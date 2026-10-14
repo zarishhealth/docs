@@ -1,0 +1,29 @@
+# Test coverage reports
+.coverage/
+
+# macOS system files
+.DS_Store
+
+# Environment variables (contains secrets)
+.env
+
+# Node.js version specification
+.node-version
+
+# Raw Files
+raw_inputs/
+
+# Node.js dependencies
+node_modules/
+
+# NPM debug logs
+npm-debug.log
+
+# Playwright test reports
+playwright-report/
+
+# Playwright browser cache
+playwright/.cache/
+
+# Temporary data files
+tmp/
