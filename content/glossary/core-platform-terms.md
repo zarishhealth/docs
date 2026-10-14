@@ -1,6 +1,6 @@
 # CORE PLATFORM TERMS
 
-## ZarishHealthHealth Glossary - Section 1
+## zarishhealth Glossary - Section 1
 
 **Focus:** Architecture, design patterns, and fundamental platform concepts
 **Audience:** Everyone (essential reading)
@@ -28,7 +28,7 @@ API-first means:
 4. Multiple clients (web, mobile, integrations) use the same API
 5. Easy to maintain backward compatibility
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - All health modules expose REST APIs
 - FHIR endpoints are API contracts
@@ -72,7 +72,7 @@ FHIR-first means:
 4. Easy to exchange with other FHIR systems
 5. Profiles enforce governance (what's allowed/required)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Patient data stored as FHIR Patient resource
 - Medications stored as FHIR Medication resources
@@ -112,7 +112,7 @@ Static-first means:
 4. Highly scalable (handles 10M requests for free)
 5. Secure by default (no server vulnerabilities)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Documentation site (Docusaurus) is static HTML → GitHub Pages
 - Landing pages static → CloudFlare Pages
@@ -157,7 +157,7 @@ Serverless means:
 4. Pay only for actual usage (minutes of execution)
 5. No server management needed
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - API endpoints run on CloudFlare Workers
 - Background jobs run on serverless platforms
@@ -202,7 +202,7 @@ PaaS provides:
 3. Managed services (databases, auth, storage)
 4. Developer doesn't manage: servers, OS, networking
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Organizations build custom health modules *on* ZarishHealth platform
 - Platform provides: FHIR server, auth, APIs, hosting
@@ -244,7 +244,7 @@ SaaS means:
 4. User pays subscription or per-use fee
 5. No installation or maintenance needed
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Organizations use ZarishHealth HIS (Health Information System) as SaaS
 - They don't manage servers or updates
@@ -294,7 +294,7 @@ IaaS: Cloud service providing virtualized computing resources (servers, storage,
 3. Provider manages: physical hardware
 4. Pay per resource usage
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **IaC:** All infrastructure defined in Terraform files
   - Country can deploy entire HIS by `terraform apply`
@@ -348,7 +348,7 @@ Open core means:
 4. Commercial: businesses can charge for extensions/support
 5. No vendor lock-in: core is portable
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Core (Free):** FHIR server, auth, basic HIS modules
 - **Premium (Optional):** Advanced analytics, country-specific customizations, support
@@ -397,7 +397,7 @@ Federated means:
 4. Each can scale independently
 5. Each can be managed by different organization
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Bangladesh health system = federation of hospitals
 - Each hospital runs its own EMR (or ZarishHealth module)
@@ -442,7 +442,7 @@ Modular means:
 4. Swappable: can replace pharmacy module with different one
 5. Composable: can pick and choose modules needed
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Patient Module: patient registration, demographics
 - Pharmacy Module: medication ordering, inventory
@@ -454,7 +454,7 @@ Modular means:
 **Structure:**
 
 ```
-ZarishHealthHealth Platform
+zarishhealth Platform
 ├── Patient Module (manages patient data)
 ├── Pharmacy Module (manages medications)
 ├── Lab Module (manages tests)
@@ -487,7 +487,7 @@ SSOT means:
 4. All systems eventually consistent with SSOT
 5. Conflicts resolved at SSOT
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Patient SSOT:** National ID + demographics at national registry
 - Each hospital has copy of patient record
@@ -532,7 +532,7 @@ Contract-first means:
 4. Breaking changes are visible immediately
 5. Easier to maintain backward compatibility
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - FHIR Profiles = contracts for health data
 - OpenAPI specs = contracts for REST APIs
@@ -581,7 +581,7 @@ REST principles:
 4. Stateless (each request independent)
 5. Standard format (usually JSON)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 REST API Examples:
@@ -664,7 +664,7 @@ gRPC means:
 4. Type-safe (Protocol Buffers enforce types)
 5. Excellent for service-to-service communication
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **REST:** Used for public APIs (web/mobile)
 - **gRPC:** Used for internal service communication (FHIR server ↔ Analytics)
@@ -696,7 +696,7 @@ Webhook means:
 4. Real-time, not polling (more efficient)
 5. Reliable delivery (retries on failure)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Webhook Example:
@@ -731,7 +731,7 @@ SemVer format: MAJOR.MINOR.PATCH (e.g., 1.3.2)
 - **MINOR** (1.2 → 1.3): New features (backward compatible)
 - **PATCH** (1.2.3 → 1.2.4): Bug fixes (backward compatible)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - FHIR R5 = Major version = big changes to profiles
 - 1.2.0 = Minor = new EMR features
@@ -770,7 +770,7 @@ Breaking changes:
 4. Changed API endpoint URL
 5. Changed data format (JSON structure)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Non-breaking: Add optional field "preferredLanguage" to Patient
@@ -807,7 +807,7 @@ Deprecation process:
 4. Support: Help users migrate
 5. Sunset: Remove in announced version
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Example: Deprecating HL7 v2 support
@@ -843,7 +843,7 @@ Backward compatible means:
    - Supporting old and new formats
    - Not changing existing behavior
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Backward Compatible:
@@ -891,7 +891,7 @@ Automated processes that continuously integrate code changes, test them, and dep
 3. No manual "release" step
 4. Users get features immediately
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Manual Process (SLOW):
@@ -934,7 +934,7 @@ Two different environments for software:
 - Changes here impact real users
 - Must be highly reliable
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Workflow:
@@ -969,7 +969,7 @@ Rollback means:
 4. Re-deploy updated version
 5. Zero downtime for users
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Scenario: New lab module deployed → Bug found
@@ -1004,7 +1004,7 @@ Immutable versioning means:
 4. Makes rollback safe and predictable
 5. Anyone can deploy v1.2.0 and get identical result
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Mutable (BAD - unpredictable):
@@ -1044,7 +1044,7 @@ Scalable systems:
 3. Auto-scaling (add servers when needed)
 4. Database can handle load
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - ZarishHealth should handle 1 hospital or 1000 hospitals
 - Users don't increase → no extra cost
@@ -1075,7 +1075,7 @@ Common SLA levels:
 - 99.99% = ~4.3 minutes downtime per month
 - 99.999% = ~26 seconds downtime per month
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - GitHub Pages: 99.9% SLA (healthcare-acceptable)
 - ZarishHealth services: Target 99.9%
@@ -1104,7 +1104,7 @@ Three pillars of observability:
 2. **Metrics:** Numerical measurements (response time, errors)
 3. **Traces:** Request paths through system
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Monitoring Examples:

@@ -1,6 +1,6 @@
 # `docs` repository agent contract
 
-This file is the operating contract for AI agents working inside `ZarishHealthhealth/docs`. It is designed for Mohammad Ariful ISLAM, a non-coder Health Program Manager.
+This file is the operating contract for AI agents working inside `zarishhealth/docs`. It is designed for Mohammad Ariful ISLAM, a non-coder Health Program Manager.
 
 > **Scope:** An agent should do everything needed to complete an approved task **inside this repository and within granted permissions**. “Everything” never means inventing authority, bypassing review, exposing sensitive data, or changing external systems without approval.
 
@@ -38,6 +38,6 @@ Do not create a new top-level folder for a single file without documenting the d
 
 ## 4. Reusable skills and agents
 
-The canonical reusable skills and role definitions live in [`.agents/skills`](https://github.com/ZarishHealthhealth/docs/.agents/skills). Read its `registry.yaml` and the relevant `SKILL.md` before using a specialized procedure.
+The canonical reusable skills and role definitions live in [`.agents/skills`](https://github.com/zarishhealth/docs/.agents/skills). Read its `registry.yaml` and the relevant `SKILL.md` before using a specialized procedure.
 
 Use the smallest suitable role and skill:

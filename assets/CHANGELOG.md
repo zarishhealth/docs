@@ -2,7 +2,7 @@
 
 ## 1.0.0 — 2026-09-19
 
-Initial release of the ZarishHealthHealth brand kit.
+Initial release of the zarishhealth brand kit.
 
 ### Added
 - Vector master mark: shield + stethoscope "Z" + cross, with the cross gap drawn as

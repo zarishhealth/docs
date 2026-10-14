@@ -1,6 +1,6 @@
 # 04. DEVELOPMENT & DEPLOYMENT TERMS
 
-## ZarishHealthHealth Glossary - Section 4
+## zarishhealth Glossary - Section 4
 
 **Focus:** Engineering, DevOps, languages, frameworks, and infrastructure
 **Audience:** Developers, DevOps engineers, system administrators
@@ -30,7 +30,7 @@ Go characteristics:
 4. **Statically typed:** Catch errors at compile time
 5. **Cross-platform:** Compile for any OS
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **FHIR Server:** Written in Go
   - Handles 1000s of concurrent requests
@@ -104,7 +104,7 @@ function getPatient(id: number): Patient {
 // Catches type errors at compile time!
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Frontend:** React (Node.js + JavaScript)
 - **APIs:** Hono or Express for REST/GraphQL
@@ -157,7 +157,7 @@ function PatientForm() {
 }
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **ZarishHealth UI:** Platform built with React
 - **Reusable:** Components shared across modules
@@ -276,7 +276,7 @@ app.post('/api/patients', (c) => {
 export default app
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **APIs:** Built with Hono
 - **Cloudflare Workers:** Run on edge (low latency)
@@ -325,7 +325,7 @@ Paid (if you grow):
 - Higher limits: Scales with you
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 ZarishHealth Backend Architecture:
@@ -384,7 +384,7 @@ Tailwind approach:
 - ✅ Small bundle (unused utilities removed)
 - ✅ Dark mode (built-in)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **UI:** ZarishHealth UI uses Tailwind
 - **Consistency:** All screens look cohesive
@@ -418,7 +418,7 @@ CloudFlare services:
 4. **DDoS Protection:** Blocks attacks
 5. **Firewall:** Web Application Firewall (WAF)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 Traditional:
@@ -476,7 +476,7 @@ How it works:
 6. No server needed
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **docs.ZarishHealthsphere.com:** Hosted on GitHub Pages
 - **Docusaurus builds:** Static HTML
@@ -548,7 +548,7 @@ WHERE m.patient_id = 123;
 # Very efficient, data integrity, relational!
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Data:** All patient, medication, lab data
 - **Provided:** Supabase includes PostgreSQL
@@ -601,7 +601,7 @@ jobs:
 # Cost: Free!
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 ```
 ZarishHealth CI/CD Pipelines:
@@ -684,7 +684,7 @@ CMD ["./fhir-server"]
 # - Works exactly the same everywhere!
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Optional:** Can use for complex deployments
 - **Development:** Developers get same environment
@@ -734,7 +734,7 @@ terraform apply
 # Version control: infrastructure in Git
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **Optional:** Start with manual CloudFlare setup
 - **Future:** IaC when deploying to multiple countries
@@ -821,7 +821,7 @@ GitHub features:
 5. **Discussions:** Community chat
 6. **Pages:** Website hosting
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - **zs-docs organization:** Platform + docs
 - **zs-platform organization:** Health + ops
@@ -874,7 +874,7 @@ test('Handle zero height', () => {
 - ✅ Enables refactoring safely
 - ✅ Faster than manual testing
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 
 - Every API has unit tests
 - FHIR profiles validated

@@ -14,7 +14,7 @@ This glossary contains **5 main sections** with **200+ terms** organized by doma
 
 ### 1. **[CORE PLATFORM TERMS](./core-platform-terms.md)**
 
-   Essential terminology for understanding ZarishHealthHealth architecture
+   Essential terminology for understanding zarishhealth architecture
 
 - Platform concepts (PaaS, SaaS, DPI, Open Core)
 - System architecture (Federated, Modular, Stateless)
@@ -64,7 +64,7 @@ This glossary contains **5 main sections** with **200+ terms** organized by doma
 
 **You are here!** Start with:
 
-1. [Core Platform Terms](./core-platform-terms.md) — Understand what ZarishHealthHealth *is*
+1. [Core Platform Terms](./core-platform-terms.md) — Understand what zarishhealth *is*
 2. [Governance &amp; Operations](./governance-operations.md) — Understand how decisions are made
 3. Refer to other sections as needed for specific domains
 
@@ -160,7 +160,7 @@ This glossary follows these principles:
 2. **Context Matters** — Each term includes use cases and relationships
 3. **Standards-Based** — References official definitions where applicable
 4. **Linked Terms** — Related concepts are cross-referenced
-5. **Practical Examples** — Real-world examples from ZarishHealthHealth
+5. **Practical Examples** — Real-world examples from zarishhealth
 6. **Evergreen** — Updated as platform evolves, versions tracked
 
 ---
@@ -181,7 +181,7 @@ Each term entry includes:
 **Technical Explanation:**
 [Deeper dive with technical details]
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 [How this applies to our platform]
 
 **Related Terms:**
@@ -200,7 +200,7 @@ Each term entry includes:
 
 ### By Use Case
 
-**"I want to understand ZarishHealthHealth basics"**
+**"I want to understand zarishhealth basics"**
 → Read: [Core Platform Terms](./core-platform-terms.md)
 
 **"I need to understand healthcare standards"**
@@ -221,9 +221,9 @@ Each term entry includes:
 
 ### **Path 1: Executive Summary (30 minutes)**
 
-1. Start: What is ZarishHealthHealth? → [Core Platform](./core-platform-terms.md)
+1. Start: What is zarishhealth? → [Core Platform](./core-platform-terms.md)
 2. Understand: Governance model → [Governance](./governance-operations.md)
-3. Goal: You can explain ZarishHealthHealth to others
+3. Goal: You can explain zarishhealth to others
 
 ### **Path 2: Healthcare Implementer (90 minutes)**
 
@@ -245,7 +245,7 @@ Each term entry includes:
 1. Start: Operations → [Governance &amp; Operations](./governance-operations.md)
 2. Learn: Infrastructure → [Development &amp; Deployment](./development-deployment.md)
 3. Understand: Data security → [Data &amp; Integration](./data-integration.md)
-4. Goal: You can manage ZarishHealthHealth instances
+4. Goal: You can manage zarishhealth instances
 
 ---
 
@@ -276,7 +276,7 @@ Each term entry includes:
 
 ## 🔗 RELATED DOCUMENTS
 
-- [ZarishHealthHealth Architecture Overview](../architecture/)
+- [zarishhealth Architecture Overview](../architecture/)
 - [Contributing Guidelines](../governance/contributing.md)
 - [Architecture Decision Records](../governance/adr/)
 - [FHIR R5 Profiles](../standards/fhir-r5-profiles/)
@@ -285,7 +285,7 @@ Each term entry includes:
 
 ## 📄 LICENSE
 
-This glossary is part of ZarishHealthHealth and is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+This glossary is part of zarishhealth and is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
 You are free to:
 
@@ -295,7 +295,7 @@ You are free to:
 
 With the requirement:
 
-- 📌 Provide attribution to ZarishHealthHealth
+- 📌 Provide attribution to zarishhealth
 
 ---
 
@@ -305,12 +305,12 @@ With the requirement:
 2. **Learn:** Go through terms systematically
 3. **Bookmark:** Add to your browser for quick reference
 4. **Contribute:** Suggest new terms or improvements via GitHub Issues
-5. **Share:** Help others understand ZarishHealthHealth by sharing this glossary
+5. **Share:** Help others understand zarishhealth by sharing this glossary
 
 ---
 
 **Made with ❤️ for the Global Health Community**
 
-*ZarishHealthHealth — Digital Public Infrastructure for Healthcare*
+*zarishhealth — Digital Public Infrastructure for Healthcare*
 
 ---

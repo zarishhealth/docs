@@ -1,5 +1,5 @@
 # 03. GOVERNANCE & OPERATIONS TERMS
-## ZarishHealthHealth Glossary - Section 3
+## zarishhealth Glossary - Section 3
 
 **Focus:** Decision-making, management, compliance, and operational governance  
 **Audience:** Leaders, administrators, governance bodies  
@@ -28,7 +28,7 @@ ADR Format:
 6. **Consequences:** What follows from this decision
 7. **Alternatives:** Other options considered
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 Each major decision gets an ADR:
 - ADR-001: FHIR R5 as primary standard
 - ADR-002: API-First architecture
@@ -105,7 +105,7 @@ docs/ @you-username
 4. Owner can approve or request changes
 5. Only owner can merge
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 zs-docs CODEOWNERS:
 * @your-name (overall)
@@ -158,7 +158,7 @@ Typical Council Members:
 - Weekly: Operational issues
 - Ad-hoc: Urgent matters
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 ZarishHealth Governance Council
 ├── Monthly Review Meeting
@@ -204,7 +204,7 @@ HIPAA Key Requirements:
 4. Backup & disaster recovery
 5. User authentication
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth designed with HIPAA principles (good practice)
 - Bangladesh: Must follow HIPAA if serving US-funded NGOs
 - Thailand/Myanmar: Similar requirements (local versions)
@@ -248,7 +248,7 @@ GDPR Key Principles:
 7. **Data Portability:** Users can get their data
 8. **Privacy by Design:** Privacy built in from start
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth should follow GDPR principles (good practice)
 - Especially if serving EU-funded NGOs
 - Enables easy data portability (users can switch systems)
@@ -294,7 +294,7 @@ EU: Personal data must be in EU (GDPR)
 Russia: Russian citizens' data must stay in Russia
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - **BGD Deployment:** Database in Bangladesh
 - **THA Deployment:** Database in Thailand
 - **MMR Deployment:** Database in Myanmar
@@ -340,9 +340,9 @@ Data Sovereignty includes:
 - **Residency:** Where data is stored (physical)
 - **Sovereignty:** Who controls data (legal/political)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 Core philosophy:
-> "Each country owns its health data. ZarishHealthHealth is a tool they use, not a company that owns their data."
+> "Each country owns its health data. zarishhealth is a tool they use, not a company that owns their data."
 
 **Governance Model:**
 ```
@@ -389,7 +389,7 @@ Change Management Process:
 7. **Verify:** Confirm success
 8. **Document:** Record what changed
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Change Request: "Add support for ICD-11 codes"
 
@@ -480,7 +480,7 @@ Release Process:
 7. **Monitoring:** Watch for problems
 8. **Support:** Help users with issues
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Release Cycle:
 - v1.0.0: Initial launch (Patient module, EMR basics)
@@ -523,7 +523,7 @@ Incident Process:
 - **Major:** Core features unavailable
 - **Minor:** Edge cases, cosmetic issues
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Example Incident:
 
@@ -642,7 +642,7 @@ Q4 2026 (Oct-Dec):
 **Related:** Open Core, Funding, Community
 
 **Definition:**
-A plan to ensure ZarishHealthHealth continues existing and improving long-term, beyond any single founder or organization.
+A plan to ensure zarishhealth continues existing and improving long-term, beyond any single founder or organization.
 
 **Technical Explanation:**
 Sustainability includes:

@@ -1,5 +1,5 @@
 # 05. DATA & INTEGRATION TERMS
-## ZarishHealthHealth Glossary - Section 5
+## zarishhealth Glossary - Section 5
 
 **Focus:** Data management, security, privacy, and ecosystem integration  
 **Audience:** Data engineers, security officers, system integrators  
@@ -25,7 +25,7 @@ Data minimization means:
 4. **Delete When Done:** Remove data after purpose fulfilled
 5. **Regular Review:** Audit what data is stored
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Patient Registration Example:
 
@@ -265,7 +265,7 @@ Encrypted: "2k3n$mK9X@L2q"
 Only someone with Key can decrypt
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - **In Transit:** HTTPS (TLS encryption)
 - **At Rest:** Database encryption
 - **Passwords:** Hashed (not encrypted)
@@ -359,7 +359,7 @@ Roles:
     └── Permission: Manage users
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Example: View patient record
 ┌─ Authentication: "Is this doctor?"
@@ -424,7 +424,7 @@ If someone knows password but not phone:
 - ✅ Protect against phishing (code changes every login)
 - ✅ Secure accounts (especially important for admins)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - **Recommended:** For all doctor/admin accounts
 - **Optional:** For patient portals (patients decide)
 - **Method:** SMS or authenticator app
@@ -567,7 +567,7 @@ Load: Insert 250 transformed records
 Result: Registry now has Hospital A's data
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Daily ETL Job:
 1. Extract: Get new/updated patients from all hospitals
@@ -704,7 +704,7 @@ Event: "Patient Admitted"
 (Asynchronous, parallel)
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 ```
 Patient Event Stream:
 PatientCreated → Triggers:
@@ -758,7 +758,7 @@ OpenHIE provides:
 └─ Governance Layer (policies, regulations)
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth follows OpenHIE architecture
 - Supports OpenHIE interoperability standards
 - Can integrate with OpenHIE-based systems
@@ -860,7 +860,7 @@ DHIS2 (National Reports)
 Ministry Decision-Making
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth captures individual records
 - ETL process aggregates to DHIS2 format
 - DHIS2 used for national reporting

@@ -1,3 +1,3 @@
 # docs
 
-ZarishHealthHealth Documentation Repository
+zarishhealth Documentation Repository

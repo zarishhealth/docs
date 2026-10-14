@@ -2,7 +2,7 @@
 
 ## Artwork, tokens and documentation
 
-Copyright (c) 2026 ZarishHealthHealth
+Copyright (c) 2026 zarishhealth
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Kit"), to deal in the Kit
@@ -23,14 +23,14 @@ OR THE USE OR OTHER DEALINGS IN THE KIT.
 ## Trademark
 
 Copyright and trademark are separate. The MIT grant above covers copying and
-modifying the files. It does not grant rights in the ZarishHealthHealth name or mark.
+modifying the files. It does not grant rights in the zarishhealth name or mark.
 
-You **may** use the name and mark to refer to ZarishHealthHealth — "built with
-ZarishHealthHealth", "compatible with ZarishHealthHealth", "a ZarishHealthHealth integration".
+You **may** use the name and mark to refer to zarishhealth — "built with
+zarishhealth", "compatible with zarishhealth", "a zarishhealth integration".
 
 You **may not** use them to imply endorsement or affiliation that does not exist,
 to brand a fork or derivative product, or in any way that suggests your product is
-ZarishHealthHealth.
+zarishhealth.
 
 ## Third-party typefaces
 

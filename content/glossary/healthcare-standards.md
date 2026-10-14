@@ -1,5 +1,5 @@
 # 02. HEALTHCARE & STANDARDS TERMS
-## ZarishHealthHealth Glossary - Section 2
+## zarishhealth Glossary - Section 2
 
 **Focus:** Medical, clinical, healthcare systems, and interoperability standards  
 **Audience:** Healthcare workers, clinicians, system integrators  
@@ -26,7 +26,7 @@ EMR characteristics:
 4. Owned by the facility (not patient)
 5. Accessible only within that facility (usually)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth HIS includes EMR module
 - Hospital enters patient data once
 - Reduces paper records
@@ -81,7 +81,7 @@ EHR vs EMR:
 - **EHR:** Patient's complete health history (all clinics + hospitals)
 - **PHR:** Patient's own record (they control it)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - National EHR: Aggregates EMRs from all hospitals
 - Patient ID ties records together
 - Prevents duplicate tests/records
@@ -120,7 +120,7 @@ PHR characteristics:
 4. Patient initiates sharing (not automatic)
 5. Patient can correct/dispute data
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth can include PHR module
 - Patients share medical records with new doctors
 - Patients control privacy
@@ -149,7 +149,7 @@ HIS includes:
 5. **Lab:** Tests, results
 6. **Imaging:** Radiology, X-rays
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth HIS = complete hospital system
 - Replaces multiple separate systems
 - Single patient ID (integrated)
@@ -288,7 +288,7 @@ PID|||123456^^^Hospital||Ahmed^Mohammed||19780515|M|||Dhaka^Bangladesh
 ```
 (Pipes and carets delimit fields)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Primary: FHIR (modern)
 - Secondary: HL7 v2 bridges (for legacy systems)
 - Don't require HL7 v2 expertise initially
@@ -328,7 +328,7 @@ Hypertension: 9A00 (ICD-11)
 Malaria: 1D40-1D44 (ICD-11)
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Used for diagnosis coding
 - FHIR Condition resource includes ICD-11 codes
 - Enables standardized reporting
@@ -377,7 +377,7 @@ SNOMED: 44054006 (Type 2 diabetes mellitus)
 - Good for clinical decision support
 - More searchable than ICD
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Used for conditions, findings, procedures
 - FHIR resources reference SNOMED concepts
 - Enables semantic search ("show all diabetic patients")
@@ -414,7 +414,7 @@ Examples:
 1559-0: Porphobilinogen [Mass/volume] in Urine
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - All lab tests use LOINC codes
 - FHIR Observation resource includes LOINC codes
 - Enables comparison across hospitals
@@ -451,7 +451,7 @@ Pharmacy functions:
 4. **Expiry Management:** Remove expired drugs
 5. **Reporting:** Usage statistics, cost analysis
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth Pharmacy module:
   - Doctors write prescriptions (in EMR)
   - Pharmacy receives order automatically
@@ -500,7 +500,7 @@ Lab functions:
 5. **Result Reporting:** Send results to doctor
 6. **Archival:** Store results for future reference
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - ZarishHealth Lab module:
   - Doctor orders tests (with LOINC codes)
   - Lab receives orders
@@ -544,7 +544,7 @@ Standard vital signs:
 4. **Respiratory Rate:** 12-20 breaths/min (normal)
 5. **Oxygen Saturation (SpO2):** 95-100% (normal)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Recorded every patient visit
 - FHIR Observation resource
 - Trends tracked (e.g., increasing blood pressure)
@@ -590,7 +590,7 @@ Types of adverse reactions:
 - NSAIDs (aspirin, ibuprofen)
 - ACE inhibitors
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - EMR displays allergies prominently
 - Pharmacy system checks before dispensing
 - Doctor sees alerts before prescribing
@@ -628,7 +628,7 @@ CDS examples:
 4. **Order Set:** Pre-filled medication orders for common conditions
 5. **Diagnostic Support:** "Based on symptoms, consider these diagnoses"
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Passive alerts (EMR shows suggestions)
 - Evidence-based (uses clinical guidelines)
 - Reduces errors and improves quality
@@ -670,7 +670,7 @@ Demographics collected:
 6. **Insurance:** Insurance company, policy number
 7. **Emergency Contact:** Who to contact
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Single patient ID (national or facility)
 - Prevents duplicate records
 - Reduces errors
@@ -706,7 +706,7 @@ Features:
 4. **Cancellation:** Patients can reschedule
 5. **No-show Tracking:** Analytics on attendance
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Patients schedule with receptionists (online or in-person)
 - Doctor sees appointments
 - Reduces wait times
@@ -749,7 +749,7 @@ Referral process:
 4. **Communication:** Results sent back to primary
 5. **Coordination:** Integrated care
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Electronic referrals (not paper)
 - Specialists see patient history immediately
 - Feedback to primary doctor
@@ -791,7 +791,7 @@ Discharge summary includes:
 5. **Follow-up:** Next appointments, tests
 6. **Restrictions:** Activity limitations (e.g., "no heavy lifting")
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - Auto-generated from EMR
 - Sent electronically to primary doctor
 - Patient receives copy
@@ -843,7 +843,7 @@ Levels of interoperability:
 2. **Structural:** Systems understand data format (e.g., both use FHIR)
 3. **Semantic:** Systems understand *meaning* of data (same medical codes)
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - FHIR = semantic interoperability
 - National HIS talks to hospital HIS
 - Hospital HIS talks to labs
@@ -889,7 +889,7 @@ MDM System:
 - Propagates: Updates to all hospitals
 ```
 
-**In ZarishHealthHealth Context:**
+**In zarishhealth Context:**
 - National patient registry (MDM)
 - Each hospital syncs with master
 - Prevents duplicates

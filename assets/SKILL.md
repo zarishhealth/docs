@@ -1,24 +1,24 @@
 ---
-name: ZarishHealthhealth-brand
-description: Apply the ZarishHealthHealth visual identity. Use whenever generating, reviewing or assembling anything that carries ZarishHealthHealth branding — websites, READMEs, app UI, favicons, app icons, social cards, banners, slide decks, emails, print. Provides the exact colour tokens, typography, logo files, file-naming convention, per-platform sizes and accessibility limits, plus the misuse rules that must never be broken.
+name: zarishhealth-brand
+description: Apply the zarishhealth visual identity. Use whenever generating, reviewing or assembling anything that carries zarishhealth branding — websites, READMEs, app UI, favicons, app icons, social cards, banners, slide decks, emails, print. Provides the exact colour tokens, typography, logo files, file-naming convention, per-platform sizes and accessibility limits, plus the misuse rules that must never be broken.
 license: MIT
 version: 1.0.0
 ---
 
-# ZarishHealthHealth Brand Skill
+# zarishhealth Brand Skill
 
-Machine-readable companion to `BRANDING.md`. Read this before producing any ZarishHealthHealth-branded artefact. Full rationale and per-platform detail live in `BRANDING.md`; exact values live in `brand-tokens.json`.
+Machine-readable companion to `BRANDING.md`. Read this before producing any zarishhealth-branded artefact. Full rationale and per-platform detail live in `BRANDING.md`; exact values live in `brand-tokens.json`.
 
 ## Canonical identity references
 
-- Organization: **ZarishHealthHealth** — <https://github.com/ZarishHealthhealth>
-- Use “ZarishHealthHealth” in prose and lowercase `ZarishHealthhealth` in handles, URLs, package names, and asset filenames.
+- Organization: **zarishhealth** — <https://github.com/zarishhealth>
+- Use “zarishhealth” in prose and lowercase `zarishhealth` in handles, URLs, package names, and asset filenames.
 
 ## When to use
 
-Trigger on: ZarishHealthHealth logo, icon, favicon, app icon, avatar, banner, OG/social card, README header, badge, colour, palette, font, brand review, "make it on-brand", or any asset destined for a ZarishHealthHealth surface.
+Trigger on: zarishhealth logo, icon, favicon, app icon, avatar, banner, OG/social card, README header, badge, colour, palette, font, brand review, "make it on-brand", or any asset destined for a zarishhealth surface.
 
-Do **not** trigger for: unrelated projects, generic design questions with no ZarishHealthHealth context.
+Do **not** trigger for: unrelated projects, generic design questions with no zarishhealth context.
 
 ## Non-negotiables
 
@@ -26,12 +26,12 @@ Do **not** trigger for: unrelated projects, generic design questions with no Zar
 2. **Never recolour** outside the approved variants (§ Variants below).
 3. **Never** add shadow, glow, bevel, outline, gradient, rotation or distortion to the mark.
 4. **The gap where the cross meets the shield is intentional.** Do not "fix", close or fill it.
-5. **Name every file** `ZarishHealthhealth-<type>-<target>[-<variant>][-<WxH>].<ext>`, lowercase, hyphenated.
+5. **Name every file** `zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>`, lowercase, hyphenated.
 6. **Below 32 px use the simplified mark** (`*-simple-*` files). Below 16 px, do not render the mark at all.
 7. **iOS icons must be opaque.** Transparency renders as black.
 8. **Social platforms and email do not render SVG.** Ship PNG there.
 9. **White text on Vital Green fails contrast (2.2:1).** Never do it.
-10. **"ZarishHealthHealth"** — one word, capital Z, capital H. Never split, never all-caps.
+10. **"zarishhealth"** — one word, capital Z, capital H. Never split, never all-caps.
 
 ## Colour tokens
 
@@ -73,25 +73,25 @@ Ladder: H1 56–72/800 · H2 40–48/700 · H3 28–32/700 · body-lg 20–22/40
 | Single-colour print, engraving | `-mono-black` |
 | Dark photo, embroidery | `-mono-white` |
 | Single-colour brand use | `-mono-blue` |
-| Platform strips transparency | `logo/ZarishHealthhealth-logo-plate-*` |
+| Platform strips transparency | `logo/zarishhealth-logo-plate-*` |
 
 ## Asset lookup
 
 | Need | Path |
 | --- | --- |
-| Header / navbar logo | `logo/ZarishHealthhealth-logo-horizontal-{light,dark}.svg` |
-| Square or centred logo | `logo/ZarishHealthhealth-logo-stacked-*.svg` |
-| Symbol only | `icon/ZarishHealthhealth-icon-transparent-color.svg` |
-| Symbol on a plate | `icon/ZarishHealthhealth-icon-{solid,circle}-{blue,navy,white}.svg` |
-| Small sizes (<32 px) | `icon/ZarishHealthhealth-icon-simple-*.svg` |
-| Favicon (ship all three) | `favicon/ZarishHealthhealth-favicon-web.ico` + `.svg` + `app-icon/ZarishHealthhealth-appicon-ios-180x180.png` |
-| Android adaptive | `app-icon/ZarishHealthhealth-appicon-maskable-android-{192,512}*.png` |
-| OG / link preview | `social/ZarishHealthhealth-social-opengraph-1200x630.png` |
-| GitHub social preview | `social/ZarishHealthhealth-social-github-1280x640.png` |
-| README hero | `banner/ZarishHealthhealth-banner-github-readme-1280x320.png` |
-| Profile picture | `avatar/ZarishHealthhealth-avatar-{github,social,slack}-*.png` |
-| README shield | `badge/ZarishHealthhealth-badge-readme-*.svg` |
-| Dark background art | `pattern/ZarishHealthhealth-pattern-*.svg` |
+| Header / navbar logo | `logo/zarishhealth-logo-horizontal-{light,dark}.svg` |
+| Square or centred logo | `logo/zarishhealth-logo-stacked-*.svg` |
+| Symbol only | `icon/zarishhealth-icon-transparent-color.svg` |
+| Symbol on a plate | `icon/zarishhealth-icon-{solid,circle}-{blue,navy,white}.svg` |
+| Small sizes (<32 px) | `icon/zarishhealth-icon-simple-*.svg` |
+| Favicon (ship all three) | `favicon/zarishhealth-favicon-web.ico` + `.svg` + `app-icon/zarishhealth-appicon-ios-180x180.png` |
+| Android adaptive | `app-icon/zarishhealth-appicon-maskable-android-{192,512}*.png` |
+| OG / link preview | `social/zarishhealth-social-opengraph-1200x630.png` |
+| GitHub social preview | `social/zarishhealth-social-github-1280x640.png` |
+| README hero | `banner/zarishhealth-banner-github-readme-1280x320.png` |
+| Profile picture | `avatar/zarishhealth-avatar-{github,social,slack}-*.png` |
+| README shield | `badge/zarishhealth-badge-readme-*.svg` |
+| Dark background art | `pattern/zarishhealth-pattern-*.svg` |
 | Tokens for code | `brand-tokens.json` · `brand.css` |
 | `<head>` block | `head-snippet.html` |
 
@@ -150,11 +150,11 @@ Never encode meaning in colour alone. Respect `prefers-reduced-motion`.
 Derive from vector; never upscale a PNG.
 
 ```bash
-rsvg-convert -w <N> -h <N> <master>.svg -o ZarishHealthhealth-<type>-<target>-<N>x<N>.png
-magick out-16.png out-32.png out-48.png ZarishHealthhealth-favicon-web.ico
+rsvg-convert -w <N> -h <N> <master>.svg -o zarishhealth-<type>-<target>-<N>x<N>.png
+magick out-16.png out-32.png out-48.png zarishhealth-favicon-web.ico
 ```
 
-Masters: `icon/ZarishHealthhealth-icon-transparent-color.svg`, `app-icon/ZarishHealthhealth-appicon-source-master.svg`, `logo/ZarishHealthhealth-logo-horizontal-light.svg`.
+Masters: `icon/zarishhealth-icon-transparent-color.svg`, `app-icon/zarishhealth-appicon-source-master.svg`, `logo/zarishhealth-logo-horizontal-light.svg`.
 
 ## Known placeholders
 
@@ -169,7 +169,7 @@ Masters: `icon/ZarishHealthhealth-icon-transparent-color.svg`, `app-icon/ZarishH
 - [ ] Simplified mark used below 32 px
 - [ ] Contrast pair passes
 - [ ] Green under ~10% of the composition
-- [ ] "ZarishHealthHealth" spelled as one word, correct capitals
+- [ ] "zarishhealth" spelled as one word, correct capitals
 - [ ] Filename follows the convention
 - [ ] Logo unmodified — no recolour, effect, rotation or distortion
 - [ ] iOS icons opaque; Android maskable icons full-bleed
@@ -178,6 +178,6 @@ Masters: `icon/ZarishHealthhealth-icon-transparent-color.svg`, `app-icon/ZarishH
 
 **Made with ❤️ for the Global Health Community**
 
-*ZarishHealthHealth — Digital Public Infrastructure for Healthcare*
+*zarishhealth — Digital Public Infrastructure for Healthcare*
 
 ---
