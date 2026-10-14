@@ -771,7 +771,7 @@ Git concepts:
 
 ```bash
 # Clone repository
-git clone https://github.com/zs-docs/docs-site.git
+git clone https://github.com/zarishhealth/docs.git
 cd docs-site
 
 # Create feature branch
