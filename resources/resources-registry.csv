@@ -5,3 +5,4 @@ reference-template,resources/templates/reference.md,template,Documentation autho
 troubleshooting-template,resources/templates/troubleshooting.md,template,Documentation authors,Document diagnosis and recovery steps,adopted,2026-10-16
 decision-record-template,resources/templates/decision-record.md,template,Maintainers,Record a proposed architecture decision,adopted,2026-10-16
 diagram-brief-template,resources/templates/diagram-brief.md,template,Documentation authors,Define and review an accessible diagram,adopted,2026-10-16
+source-corpus-disposition,resources/source-corpus-disposition.csv,inventory,Maintainers,Record disposition of the local draft corpus without copying its contents,reviewed,2026-10-16

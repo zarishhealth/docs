@@ -44,4 +44,6 @@ The organization blueprint is a proposal. The runtime API host, deployment envir
 
 - [Organization blueprint](organization-blueprint.md)
 - [Repository map](repository-map.md)
+- [Proposed data and integration flow](data-and-integration-flow.md)
+- [Technology baseline snapshot](../reference/technology-baseline.md)
 - [Glossary](../glossary/index.md)

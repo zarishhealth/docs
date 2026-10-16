@@ -20,7 +20,9 @@ This site explains the ZarishHealth organization, its proposed architecture, and
 | Understand the project and how to use this documentation | [Get started](get-started/index.md) |
 | See how the organization and its repositories fit together | [Repository map](architecture/repository-map.md) |
 | Understand the system's proposed local-first design | [Architecture overview](architecture/index.md) |
+| Follow the proposed data and integration flow | [Data and integration flow](architecture/data-and-integration-flow.md) |
 | Read the organization-wide naming and repository proposal | [Organization blueprint](architecture/organization-blueprint.md) |
+| Check the dated technology-version snapshot | [Technology baseline](reference/technology-baseline.md) |
 | Find plain-language definitions | [Glossary](glossary/index.md) |
 | Suggest or review a change | [Contributing guide](guides/contributing.md) |
 

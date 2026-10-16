@@ -15,7 +15,7 @@ audience: Health-program teams, clinicians, and developers
 
 ## FHIR release
 
-A **FHIR release** is a published version of the FHIR specification. The blueprint proposes R5 initially and notes that R4 is widely deployed. Implementers must name and test the exact release they support; do not infer support from a badge or repository name.
+A **FHIR release** is a published version of the FHIR specification. R5 (`5.0.0`) is the current published release checked on 2026-10-16, and the blueprint proposes it as a starting point. Implementers must name and test the exact release they support; do not infer support from a badge or repository name.
 
 ## FHIR resource
 
@@ -27,7 +27,7 @@ A **profile** adds rules to a FHIR resource for a particular use, such as requir
 
 ## SMART App Launch
 
-**SMART App Launch** is a standard for connecting applications to FHIR systems using authorization and launch context. Confirm the supported version, FHIR release, and security configuration for an actual deployment.
+**SMART App Launch** is a guide for authorizing and connecting applications to FHIR systems. The current published guide checked here is version 2.2.0 and is based on FHIR R4. The blueprint proposes FHIR R5, so compatibility must be established against the selected versions before implementation.
 
 ## Terminology system
 
@@ -40,7 +40,9 @@ A **terminology system** defines codes and their meanings. The blueprint names s
 ## Further reading
 
 - [HL7 FHIR R5 specification](https://hl7.org/fhir/R5/)
+- [HL7 FHIR version policy](https://hl7.org/fhir/versions.html)
 - [SMART App Launch](https://hl7.org/fhir/smart-app-launch/)
+- [Technology baseline snapshot](../reference/technology-baseline.md)
 - [SNOMED CT licensing](https://www.snomed.org/licensing)
 - [LOINC](https://loinc.org/)
 - [ICD-11](https://www.who.int/standards/classifications/classification-of-diseases)

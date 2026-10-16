@@ -19,6 +19,7 @@ const sidebars = {
       items: [
         'architecture/index',
         'architecture/repository-map',
+        'architecture/data-and-integration-flow',
         'architecture/organization-blueprint',
       ],
     },
@@ -28,6 +29,7 @@ const sidebars = {
       items: [
         'reference/content-model',
         'reference/naming',
+        'reference/technology-baseline',
         {
           type: 'category',
           label: 'Glossary',

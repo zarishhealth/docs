@@ -9,11 +9,13 @@ Start with the [documentation home](content/index.md), [getting started](content
 | Path | What it contains |
 | --- | --- |
 | `content/` | Reviewed guides, architecture, references, and the glossary |
-| `resources/templates/` | Reusable writing, decision-record, and diagram templates |
+| `resources/` | Reusable templates, resource registry, and maintainer-only source disposition inventory |
 | `assets/` | Source brand kit and its documentation |
 | `static/` | Selected brand assets copied for the docs site |
 | `.agents/skills/` | Writing and diagram skills for agents |
 | `raw_inputs/`, `raw_files/` | Local-only, ignored intake; never commit or publish these folders |
+
+See [`resources/README.md`](resources/README.md) for the maintainer resource index and the disposition record for the local draft corpus. The raw source files themselves remain ignored and are not included.
 
 ## Preview and validate
 
@@ -31,7 +33,7 @@ npm run lint:md
 npm run build
 ```
 
-The GitHub Actions workflow runs the same checks. The build is configured for the planned project-site path, `https://zarishhealth.github.io/docs/`, but it does **not** deploy. As of 2026-10-16, this repository is private and GitHub Pages is disabled. Review repository visibility, content, and publication approval before enabling a public deployment.
+The GitHub Actions workflow runs the same checks. The build is configured for the planned project-site path, `https://zarishhealth.github.io/docs/`, but it does **not** deploy. As of 2026-10-16, this repository is private and GitHub Pages is disabled. GitHub Pages sites are publicly available even when their source repository is private, if the plan and organization allow Pages; review visibility, content, assets, licenses, and publication approval before enabling a deployment. See [GitHub's Pages publishing guidance](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Documentation and safety
 

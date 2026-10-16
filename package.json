@@ -10,6 +10,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
+    "test:security": "node --test tests/security/*.test.js",
     "check": "npm run lint:md && npm run build"
   },
   "devDependencies": {
@@ -17,6 +18,17 @@
     "@docusaurus/preset-classic": "3.10.2",
     "@docusaurus/theme-mermaid": "3.10.2",
     "@mermaid-js/layout-elk": "^0.1.9",
-    "markdownlint-cli2": "0.23.3"
+    "braces": "file:vendor/braces",
+    "markdownlint-cli2": "0.23.3",
+    "mermaid": "11.17.2"
+  },
+  "overrides": {
+    "braces": "$braces",
+    "katex": "^0.18.2",
+    "postcss-selector-parser": "^7.1.6",
+    "serialize-javascript": "^7.1.2",
+    "smol-toml": "^1.9.1",
+    "tinypool": "^2.2.0",
+    "uuid": "^11.1.1"
   }
 }

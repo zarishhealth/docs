@@ -1,0 +1,13 @@
+{
+  "name": "braces",
+  "version": "3.0.4-zarishhealth.1",
+  "description": "ZarishHealth-maintained security fork of braces 3.0.3",
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "fill-range": "^7.1.1"
+  }
+}

@@ -54,7 +54,7 @@ Do not redraw a logo, use an unapproved variant, or add unverified certification
 
 ## Publication status
 
-This repository is private and GitHub Pages is disabled as of 2026-10-16. The site configuration contains the planned `/docs/` project path, but no deployment workflow exists. Before enabling public publishing, review repository visibility, all content and assets, license terms, links, and the intended publication owner.
+This repository is private and GitHub Pages is disabled as of 2026-10-16. The site configuration contains the planned `/docs/` project path, but no deployment workflow exists. GitHub Pages sites are publicly available even when their source repository is private, if the plan and organization allow Pages. Before enabling publishing, review repository visibility, all content and assets, license terms, links, and the intended publication owner. See [GitHub's publishing guidance](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Upgrade dependencies
 

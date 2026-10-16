@@ -2,7 +2,7 @@
 title: ZarishHealth organization blueprint
 description: Proposed organization-wide repository, naming, architecture, and interface standards.
 slug: /architecture/organization-blueprint
-sidebar_position: 3
+sidebar_position: 4
 status: proposed
 last_reviewed: "2026-10-16"
 audience: Organization maintainers, contributors, and technical reviewers
@@ -14,7 +14,7 @@ source_note: Reconciled from maintainer-provided architecture drafts; unresolved
 **Supersedes:** `DRAFT_BLUEPRINT_ZARISHHEALTH.md`, `DRAFT_ZARISHHEALTH.md` (both drafts are merged and reconciled here)
 
 > This document defines how every repository, directory, file, URL, API path, MCP server and well-known document of the ZarishHealth GitHub organization is named, laid out and published, so that **every path can be used as a URI/URL/API/MCP endpoint without renaming**.
-> Standards were checked against current sources on 2026-10-14. Where a standard is still a draft or unsettled, this document says so (see §3 and §19).
+> This is a design proposal, not an implementation inventory or deployment guide. Standards and version status were rechecked against primary sources on 2026-10-16 where recorded; the [technology baseline](../reference/technology-baseline.md) is a dated snapshot, not a version lock.
 
 ---
 
@@ -39,62 +39,61 @@ source_note: Reconciled from maintainer-provided architecture drafts; unresolved
 
 | # | Decision | Reason |
 | --- | --- | --- |
-| D1 | **Rust backend**: Axum 0.8 + Tokio + SQLx; Tauri v2 for desktop/mobile shells; embedded SQLite at sites; PostgreSQL only at the optional central tier | Your stated requirement; matches both drafts |
-| D2 | **Local-first**: every site works with its uplink cut. The central tier is optional and is never a dependency | Matches the org profile's rule ("a site must remain fully operational with its uplink cut") |
-| D3 | **Few repositories first** (≈14), Cargo **workspace monorepo** for Rust code; split a crate into its own repo only when it needs an independent release cadence or owner | The 105-repo plan is not maintainable by a small team; every extra repo multiplies CI, security and naming work |
-| D4 | **One path layout on every origin** (laptop, LAN, cloud). The hostname is configuration, never code | You own no domain (see §2) |
+| D1 | **Proposed Rust backend**: Axum 0.8 + Tokio + SQLx; Tauri v2 for desktop/mobile shells; embedded SQLite at sites; PostgreSQL only at the optional central tier | Architecture proposal; implementation and operational fit have not been verified |
+| D2 | **Local-first goal**: essential site work should continue when its uplink is unavailable; the central tier is optional | Proposed availability goal; validate it with users and a working pilot |
+| D3 | **Few repositories first**, Cargo **workspace monorepo** for Rust code; split a crate into its own repo only when it needs an independent release cadence or owner | Avoid repository growth without a clear ownership or release need |
+| D4 | **One path layout on every origin** (laptop, LAN, cloud). The hostname is configuration, never code | Proposed portability rule; verify all origins and hosting choices before adoption |
 | D5 | **Clinical data is only under `/fhir`**; the native API (`/api/v1`) never duplicates clinical resources | Prevents two competing data models |
 | D6 | **Native API errors use RFC 9457** `application/problem+json`; the FHIR endpoint uses `OperationOutcome` | Each is the standard for its surface |
-| D7 | **Resource IDs are opaque UUIDv7 (RFC 9562)**, generated on the device | Safe offline generation, time-sortable for sync, and no personal data in URLs (replaces UUIDv4 and the DOB/NID-embedded IDs, see §14) |
+| D7 | **Resource IDs are opaque UUIDv7 (RFC 9562)**, generated on the device | Proposed offline identifier strategy; validate collision, privacy, and interoperability requirements |
 | D8 | **Naming is lowercase kebab-case everywhere except where an external standard mandates otherwise** (Rust `snake_case` source, FHIR `PascalCase` resource types, conventional root files like `README.md`) | One rule, few exceptions, all listed in §4.9 |
 
 ### 1.2 Problems found in the drafts (not carried forward)
 
 | Draft claim or practice | Problem | Replacement |
 | --- | --- | --- |
-| `api.zarishhealth.com`, `health.zarishhealth.com`, `zarishhealth.org`, `admin@zarishhealth.com`, `health-coc@zarishsphere.com` | You own none of these domains | §2 origin model; GitHub private vulnerability reporting |
-| Four GitHub organizations "to yield 8,000 free build minutes" | Splitting orgs to multiply free quotas is likely to conflict with GitHub's terms and fragments governance. Also unnecessary: standard runners on **public** repositories are free | One organization |
+| Unverified domain names, email addresses, and service URLs in older examples | Ownership and authorization have not been confirmed | Use placeholders and verify ownership before publishing or configuring endpoints (§2) |
+| Splitting organizations to increase CI quota | Quota and policy assumptions require verification and can fragment governance | Keep organization boundaries tied to ownership, access, and operational needs |
 | Repo names such as `zs-fhir-rust-server`, `zs-esm-patient-chart` | The Rust API Guidelines say crate names should not carry `-rs`/`-rust`; an org-wide `zs-` prefix duplicates the org namespace | §4.1, §4.6 |
-| Keycloak for every tier | Java server; contradicts the 18–30 MB, 512 MB-RAM field target and offline operation | Embedded OAuth/OIDC issuer in the Rust server for sites; Keycloak (or any OIDC provider) optional at HQ (§12) |
-| Personal Google Drive `appDataFolder` and Supabase/Render **free tiers** as PHI stores | No data-processing agreement, free-tier pausing, wrong jurisdiction control | Synthetic data only until a hosting decision is made (§14) |
-| `local_sync_key` plaintext and bcrypt hashes in a `config.json` committed to Git | Secrets in version control | Secrets never in Git; per-site secrets provisioned at install (§14) |
-| Version claims (`Rust v1.98`, `SQLite v3.53`, `Protobuf v29+`, "80% smaller", "18 MB RAM", "50 ms start") | Not verified; some are marketing numbers | Pin versions in `rust-toolchain.toml`/`Cargo.lock`; benchmarks go in `core/benches/` and are published only once measured |
-| `ReferralRequest` as an FHIR R5 resource | Removed in R4; use `ServiceRequest` | §9 |
+| Selecting an identity provider or hosting service before deployment requirements are known | Provider features, availability, jurisdiction, contracts, and resource needs have not been assessed | Defer provider selection to a reviewed architecture decision; use synthetic data during development (§12, §14) |
+| Secrets or password material committed in configuration examples | Sensitive values must not be stored in version control | Keep secrets out of Git and use reviewed provisioning and rotation procedures (§14) |
+| Unverified technology-version and performance claims | They are not evidence of supported versions or measured behavior | Check official releases; pin compatible dependencies and publish benchmarks only after measurement |
+| `ReferralRequest` as an FHIR R5 resource | The R5 resource page is not published; the R5 `ServiceRequest` resource describes referral workflows | Verify the resource in the selected FHIR release before defining a contract (§9) |
 | Service code `MH-` used for both Maternal Health and Mental Health; `DR-REFERRAL` used twice | Colliding identifiers | §7.5 |
 | Invented administrative codes `BD.2.1.4.3` | Not the OCHA COD-AB P-codes the data source actually uses | Use the P-codes from the dataset you cite |
 
 ---
 
-## 2. The "no custom domain" model
+## 2. GitHub-hosted origins and configurable API host
 
-You own exactly one namespace: **`github.com/zarishhealth`**. GitHub gives you, for free, several more URL spaces under it. Everything in this blueprint is built on those.
+The organization name provides a GitHub namespace. Ownership or approval of any custom domain, email address, hosting provider, or external service has not been verified here. Use placeholders until maintainers confirm those details.
 
 ### 2.1 Origins
 
 | Purpose | Origin / URL pattern | Notes |
 | --- | --- | --- |
 | Code, issues, releases | `https://github.com/zarishhealth/<repo>` | Canonical source of truth |
-| **Org website + site-wide static files** | `https://zarishhealth.github.io/` | Served from the repo named exactly `zarishhealth.github.io`. **This is the only origin where `/.well-known/` works on Pages** |
-| **Project sites** | `https://zarishhealth.github.io/<repo>/` | One Pages site per repo. The repo name becomes the first path segment, so **repo names are URL names** |
+| **Organization site proposal** | `https://zarishhealth.github.io/` | The matching repository exists; verify whether Pages is enabled and which content is approved |
+| **Project-site pattern** | `https://zarishhealth.github.io/<repo>/` | GitHub documents this URL pattern for project sites; do not assume a site is enabled or public |
 | Container images | `ghcr.io/zarishhealth/<image>` | Lowercase only |
 | npm packages (if any) | `@zarishhealth/<package>` | Scope = org name |
 | Rust crates | `zarish-<name>` on crates.io | crates.io has no org namespaces, so a prefix is the only protection |
-| MCP Registry names | `io.github.zarishhealth/<server>` | Reverse-DNS namespace verified through GitHub login (this is the form the official registry documents for GitHub-based auth) |
+| MCP registry names | Follow the current official MCP Registry naming and manifest rules if adoption is approved | Verify registration requirements at implementation time |
 | Central API (optional) | `https://{API_ORIGIN}` | Hostname assigned by whatever host you choose; **configuration, not code** |
-| Site/field API | `http://localhost:8080` or `http://zarish.local:8080` (mDNS) | Same path layout as the central API |
+| Site/field API proposal | Local or site-specific origin | Decide hostnames and TLS before implementation; do not send health data over unencrypted network connections |
 
 Rules that follow:
 
 1. **GitHub Pages is static.** The Rust server cannot run there. Pages hosts documentation, the FHIR Implementation Guide, published API contracts and brand assets only.
 2. **Anything that must be served by a running server** (`/fhir`, `/api/v1`, `/mcp`, OAuth metadata) lives on the Rust server's own origin, and the server serves its own `/.well-known/*` documents. OAuth metadata in particular must be served from the origin it describes, so it cannot be hosted on `github.io` for a different origin.
 3. **Pages cannot set custom response headers.** Anything that needs a specific `Content-Type` that Pages would not infer (extensionless files, `application/linkset+json`) must come from the Rust server instead.
-4. **`raw.githubusercontent.com` is for Git, not for web assets.** It serves SVG as plain text, so SVGs referenced from other sites can fail to render (verify in browser devtools: the current `index.html` references raw SVG logos). Publish brand assets from Pages (§17).
-5. **Local HTTPS caveat.** MCP and OAuth expect HTTPS except for loopback. LAN sites at `http://zarish.local` are fine for FHIR/native API but must not be exposed as OAuth/MCP resources to external clients; use loopback or a TLS-terminating proxy.
-6. If you later buy a domain, only `{API_ORIGIN}` and the canonical-URL base change (§7.1); no repo, path or API renames are required. That is the purpose of rule D4.
+4. Do not rely on `raw.githubusercontent.com` as a public asset host without checking its content type, browser behavior, and intended use. A reviewed Pages deployment may be considered only after publication approval (§17).
+5. **Transport security:** use HTTPS for network traffic carrying sensitive information. A loopback exception or a local development setup does not authorize clear-text traffic over a LAN or external network.
+6. If an approved custom domain or API host becomes available, review canonical URLs and origins (§7.1) before use; do not assume that any external domain is owned or approved.
 
 ---
 
-## 3. Standards baseline (verified 2026-10-14)
+## 3. Standards baseline (rechecked 2026-10-16)
 
 | Area | Standard | Status / note |
 | --- | --- | --- |
@@ -107,14 +106,15 @@ Rules that follow:
 | API discovery | **RFC 9727** `api-catalog` | Publisher must answer `GET` and `HEAD` with a `Link` header; Linkset format |
 | IDs | **RFC 9562** UUIDs (v7) | v7 is time-ordered; good for offline generation |
 | Timestamps | RFC 3339 (UTC, `Z`) | |
-| API description | **OpenAPI 3.1** baseline; 3.2 exists and is adopted by some tooling | Pin 3.1 until your Rust generator supports 3.2 |
-| Healthcare | **HL7 FHIR R5 (5.0.0)** now; **R6** in normative ballot since January 2026, final publication expected late 2026–2027 | R4 remains the most widely deployed; **SMART App Launch 2.1** is published against R4 but works with any FHIR version from DSTU2 onward. Design so R5→R6 is a configuration and profile change (§9) |
-| FHIR discovery | `/metadata` (CapabilityStatement) + `/.well-known/smart-configuration` | Per SMART App Launch, the well-known path is appended to the FHIR base URL even when the base has a path component |
-| MCP | **Model Context Protocol 2026-07-28** (current; replaced 2025-11-25) | **Stateless**: no initialize handshake, no `Mcp-Session-Id`; `server/discover` is mandatory; `Mcp-Method`/`Mcp-Name` headers required on Streamable HTTP; list results carry `ttlMs`/`cacheScope`; HTTP+SSE transport deprecated; roots, sampling, logging and Dynamic Client Registration deprecated (removal not before 2027-07-28); tool names 1–128 chars from `A–Z a–z 0–9 _ - .` |
-| MCP auth | OAuth 2.0 **Protected Resource Metadata (RFC 9728)** required for discovery; authorization servers provide RFC 8414 and/or OIDC discovery | Clients must reject metadata whose `issuer` does not match the URL it was fetched from |
-| MCP server cards | **Not settled.** Proposals SEP-1649 → SEP-2127 use `/.well-known/mcp/server-card.json`, `/.well-known/mcp/server-cards.json` and `/.well-known/mcp.json` in different drafts; none is in the IANA registry | Isolate behind one config value (§10.4); do not depend on it |
+| API description | OpenAPI **3.1 is the proposal baseline** | Recheck the current specification and chosen generators before publishing contracts; validate generated and hand-written contracts in CI |
+| Healthcare | HL7 **FHIR R5 (5.0.0) is the current published specification** as checked 2026-10-16 | The blueprint proposes R5. Track later releases through HL7; do not state that a ballot or draft is a final standard. Name and test the exact release supported by each implementation |
+| FHIR authorization guide | SMART App Launch **2.2.0** is the current published guide checked here and is based on FHIR R4 | The proposal targets FHIR R5, so compatibility must be established against the exact SMART and FHIR releases before implementation; do not assume cross-version compatibility |
+| FHIR discovery | FHIR `metadata` (CapabilityStatement) and SMART `/.well-known/smart-configuration` are proposed discovery surfaces | Confirm each path and its behavior against the selected versions of the FHIR and SMART specifications |
+| MCP | The official **2026-07-28** MCP specification is the current dated specification checked here | Select and pin a dated specification for an implementation. Verify protocol details against that version; drafts and third-party summaries are not normative |
+| MCP authorization | Use the selected MCP authorization profile and applicable IETF specifications | Authorization, token audience, transport security, and metadata behavior need a reviewed implementation design |
+| MCP server cards | Discovery status and location are unsettled in this proposal | Check the official MCP specification and relevant registries before depending on a location |
 | MCP registry | `server.json` under `io.github.<user>/<name>` | Namespace verified through GitHub, DNS or HTTP challenge |
-| Rust naming | RFC 430 casing; crate names should **not** use `-rs`/`-rust`; modules/functions `snake_case`; acronyms as words (`HttpClient`) | Rust API Guidelines |
+| Rust naming | Rust API Guidelines and Rust's documented naming conventions | Apply current upstream guidance when creating the workspace |
 | Versioning | SemVer 2.0.0; Conventional Commits 1.0.0 | |
 | Licensing metadata | SPDX identifiers; REUSE layout | §15 |
 
@@ -220,24 +220,26 @@ Rust source `snake_case` · Rust directories above · FHIR resource names (`Pati
 
 ## 5. Organization map and repository catalog
 
-### 5.1 Phase 1 (create or normalise now)
+### 5.1 Current repositories and proposed future repositories
 
-| Repository | URL | Pages URL | Contents | Visibility |
-| --- | --- | --- | --- | --- |
-| `.github` | `github.com/zarishhealth/.github` | — | Org profile, community-health defaults, reusable workflows, brand kit | Public |
-| `zarishhealth.github.io` | `…/zarishhealth.github.io` | `https://zarishhealth.github.io/` | Org website; static `/.well-known/security.txt`; mirrored brand assets | Public |
-| `docs` | `…/docs` | `/docs/` | Handbook, architecture, ADRs, problem-type pages, deployment guides | Public |
-| `core` | `…/core` | `/core/` (rustdoc) | Rust Cargo workspace: models, storage, sync, auth, server, CLI | Public |
-| `app` | `…/app` | — | Tauri v2 shells + web UI (WASM) for desktop, mobile, browser | Public |
-| `api` | `…/api` | `/api/` | **Contracts only**: OpenAPI, Protobuf, JSON Schemas, MCP tool schemas | Public |
-| `fhir` | `…/fhir` | `/fhir/` | FHIR Implementation Guide: profiles, value sets, code systems, NamingSystems (canonical base) | Public |
-| `mcp` | `…/mcp` | `/mcp/` | MCP servers (Rust), `server.json` manifests | Public |
-| `content` | `…/content` | — | Clinical forms, terminology subsets, translations | Public (synthetic only) |
-| `deploy` | `…/deploy` | — | Containers, IaC, field images, backup scripts | Public (no secrets) |
-| `distro-template` | `…/distro-template` | — | GitHub **template** repo for site distributions | Public |
-| `rfcs` | `…/rfcs` | `/rfcs/` | Proposals and governance | Public |
-| `builder` | `…/builder` | — | Existing repository; consult its own README for its current scope | Public |
-| `.github-private` | | | Member-only profile and internal notes | Private (optional) |
+Only `.github`, `docs`, `builder`, and `zarishhealth.github.io` are part of the current inventory recorded in this repository map. The remaining rows are proposals, not repositories to create now. No visibility or deployment target is approved by this blueprint.
+
+| Repository | Status | Proposed purpose | Visibility / publication |
+| --- | --- | --- | --- |
+| `.github` | Current repository; verify its active files | Organization profile, shared defaults, and reusable resources | Check current repository settings |
+| `docs` | Current repository | Reviewed organization documentation | Private at the last verified check; no deployment configured |
+| `builder` | Current repository; verify purpose in its README | Not established here | Check current repository settings |
+| `zarishhealth.github.io` | Current repository; verify purpose and deployment | Organization website repository | Check current repository settings |
+| `core` | Proposal | Rust workspace for shared models, storage, sync, server, and CLI | Undecided; review before creation |
+| `app` | Proposal | Tauri shells and user interface | Undecided; review before creation |
+| `api` | Proposal | API, Protobuf, JSON Schema, and MCP contracts | Undecided; review before creation |
+| `fhir` | Proposal | FHIR Implementation Guide and validated profiles | Undecided; review before creation |
+| `mcp` | Proposal | Optional MCP servers and registry manifests | Undecided; review before creation |
+| `content` | Proposal | Reviewed forms, translations, and licensed terminology subsets | Undecided; review data and licenses first |
+| `deploy` | Proposal | Deployment and backup automation | Undecided; review secrets and operational ownership |
+| `distro-template` | Proposal | Template for site distributions | Undecided; review before creation |
+| `rfcs` | Proposal | Architecture proposals and governance | Undecided; review before creation |
+| `.github-private` | Optional proposal | Restricted internal profile or notes | Undecided; do not create without a specific need |
 
 > `/fhir/`, `/api/`, `/docs/` and `/mcp/` as Pages paths are **static documentation and contracts**. They are different things from the live `/fhir`, `/api/v1` and `/mcp` endpoints on `{API_ORIGIN}`. The static site is where the contract is read; the server is where it is called.
 
@@ -259,6 +261,8 @@ Rust source `snake_case` · Rust directories above · FHIR resource names (`Pati
 ---
 
 ## 6. Per-repository layouts
+
+The layouts below are target examples, not inventories of current repositories. Do not create, rename, or publish these paths without approval and validation in the destination repository.
 
 ### 6.1 `.github`
 
@@ -465,7 +469,7 @@ docs/                                 rfcs/
 | Protobuf packages | `zarishhealth.<domain>.<vN>` | Permanent per major |
 | Runtime API | `{API_ORIGIN}` | Replaceable |
 
-**Rule: identifiers that get embedded in data (canonical URLs, NamingSystem URIs, JSON Schema `$id`) MUST use the permanent bases above, never `{API_ORIGIN}`.** If you later own a domain, add it as an alias but keep these identifiers valid forever.
+**Rule: identifiers that get embedded in data (canonical URLs, NamingSystem URIs, JSON Schema `$id`) MUST use the permanent bases above, never `{API_ORIGIN}`.** If maintainers approve a custom domain, decide whether it is an alias and preserve any identifiers already published.
 
 ### 7.2 Resource identifiers
 
@@ -530,6 +534,8 @@ Keep the existing service classification, but make each code unique and put them
 
 ## 8. Native HTTP API (`/api/v1`)
 
+All routes, fields, scopes, and status codes in this section are proposed contract material. No endpoint in this catalog is confirmed as running; do not treat it as an API reference for a live service.
+
 ### 8.1 Conventions
 
 | Topic | Rule |
@@ -584,126 +590,75 @@ Action-like operations are modelled as creatable resources (`sync-sessions`, `re
 
 ## 9. FHIR endpoint (`/fhir`)
 
+This endpoint is proposed, not verified as implemented. Validate every operation, profile, terminology binding, and version claim against the selected official FHIR release and a reviewed implementation guide.
+
 | Topic | Rule |
 | --- | --- |
 | Base URL | `{API_ORIGIN}/fhir` |
-| Version | R5 (`5.0.0`) at launch. Select with MIME parameter `Accept: application/fhir+json; fhirVersion=5.0`. A future R6 deployment is announced through `GET /fhir/metadata` (`fhirVersion`) and, if run in parallel, a separate base (`/fhir-r6`) — decided by RFC at that time |
+| Version | R5 (`5.0.0`) is the proposed baseline. Confirm version negotiation and capability reporting against the implementation's conformance requirements |
 | Formats | `application/fhir+json` (primary); `application/fhir+xml` optional |
 | Paths | Standard FHIR REST: `GET /fhir/Patient/{id}`, `POST /fhir/Patient`, `GET /fhir/Observation?patient=…&_count=…`, `POST /fhir/` (transaction/batch Bundle), `POST /fhir/Patient/_search`. Resource types are `PascalCase` by FHIR rule — the allowed exception |
 | Discovery | `GET /fhir/metadata` (CapabilityStatement); `GET /fhir/.well-known/smart-configuration` (path appended to the FHIR base, as SMART requires) |
 | Errors | `OperationOutcome` with matching HTTP status |
 | Subscriptions | R5 topic-based Subscriptions only when required; sync does **not** depend on them |
 | HL7 v2 ingest | `POST /fhir/$hl7v2-ingest` is **not** used. Legacy ingest is a separate native resource: `POST /api/v1/hl7-messages` (202), keeping FHIR paths standard |
-| Referral | Use `ServiceRequest` (there is no `ReferralRequest` in R4/R5) |
+| Referral | R5 `ServiceRequest` supports referral workflows; verify resource choice against the official release |
 | Profiles | Declared in `fhir` IG; canonical `https://zarishhealth.github.io/fhir/StructureDefinition/zarish-<name>` |
 | Terminology systems | Standard URIs (`http://snomed.info/sct`, `http://loinc.org`, `http://hl7.org/fhir/sid/icd-11`) — confirm each system's current registered URI in the HL7 terminology registry before use; SNOMED CT/LOINC/ICD-11 licensing must be checked per country |
 
-R6 readiness: keep profiles in FSH, avoid R5-only elements without a mapping note, and test against the R6 ballot build in CI as a non-blocking job.
+Revisit later FHIR releases only after HL7 publishes them; validate profile changes and migrations against the published specification.
 
 ---
 
-## 10. MCP (Model Context Protocol 2026-07-28)
+## 10. Optional MCP evaluation
 
-### 10.1 Naming
+The organization blueprint mentions the Model Context Protocol (MCP) as a possible future integration. No ZarishHealth MCP server, registry entry, or authorization design is verified here.
 
-| Item | Rule | Example |
-| --- | --- | --- |
-| Registry name | `io.github.zarishhealth/<kebab>` | `io.github.zarishhealth/fhir` |
-| Crate | `zarish-mcp-<domain>` | `zarish-mcp-terminology` |
-| Endpoint path | One path per server, `POST /mcp` for the main server; additional servers `POST /mcp/<domain>` | `/mcp/terminology` |
-| Tool names | `^[a-z][a-z0-9_]{0,63}$` in practice (spec allows 1–128 of `A-Za-z0-9_-.`); `snake_case`, domain-first: `<domain>_<verb>_<noun>` | `fhir_search_resources`, `terminology_lookup_code` |
-| Resource URIs | `zarish://<domain>/<path>` for non-HTTP resources; real `https://` URLs where a resource has one | `zarish://terminology/icd11/1A00` |
-| Prompts | `snake_case` | `summarize_encounter_template` |
-| Tool inputs | `camelCase`, JSON Schema in `api/mcp/tools/<tool-name>.schema.json` | |
+Before considering an implementation:
 
-### 10.2 Transport and protocol requirements
-
-- Streamable HTTP, single endpoint, `POST` only. **No** HTTP+SSE, **no** `Mcp-Session-Id`, **no** initialize handshake.
-- Required request headers: `MCP-Protocol-Version: 2026-07-28`, `Mcp-Method`, and `Mcp-Name` for `tools/call`, `resources/read`, `prompts/get`. Header value and body value must agree; mismatches are rejected.
-- Implement `server/discover` (mandatory).
-- All list/read results include `ttlMs` and `cacheScope`. Use `cacheScope: private` for anything user-specific.
-- Tool parameters mirrored to headers use `x-mcp-header` → `Mcp-Param-{Name}`; use sparingly (for routing, e.g. `siteId`).
-- Input validation failures are tool-execution errors (so the model can retry), not protocol errors.
-- Do not build on deprecated features (roots, sampling, logging, DCR). Use `stderr`/OpenTelemetry for logging, and client-ID metadata documents instead of DCR.
-- Local desktop use: **stdio** transport; remote/shared: Streamable HTTP.
-
-### 10.3 Authorization
-
-- The MCP server is an OAuth **resource server** and publishes RFC 9728 metadata (§11.1).
-- Authorization servers publish RFC 8414 and/or OIDC discovery; clients try the path-insertion and path-appending forms.
-- Tokens are audience-bound to the MCP resource URL (resource indicators).
-- Tool scopes mirror API scopes (§12). Write tools are off by default.
-
-### 10.4 Server card (unsettled)
-
-Serve the card from **one** configurable path, default `/.well-known/mcp/server-card.json`, and treat the location as provisional (the proposals disagree: `server-card.json`, `server-cards.json`, `mcp.json`). Never reference it from other documents. Registry publication (`server.json`) is the stable discovery route.
-
-### 10.5 Safety rules (health data)
-
-1. Default MCP servers are **read-only** and expose **terminology, documentation and de-identified aggregates** first.
-2. `zarish-mcp-fhir` returns patient data only to authenticated callers with the same scopes as the REST API, never to anonymous sessions, and writes an audit event per call.
-3. Tool descriptions and annotations are untrusted metadata for clients; never rely on them for security. Enforce authorization on the server.
-4. Never place personal data in tool names, resource URIs, or `Mcp-Name`/`Mcp-Param-*` headers (headers are logged by gateways).
+1. Select a dated version from the [official MCP specification](https://modelcontextprotocol.io/specification/2026-07-28/) and verify every protocol requirement against that version.
+2. Start, if approved, with read-only, approved, non-sensitive documentation or terminology. Do not expose patient data through MCP by default.
+3. Require a privacy review, threat model, authorization design, user-safety review, and an explicit decision about which clients and deployment origins are supported.
+4. Verify registry, discovery, transport, and authentication requirements at implementation time. Do not rely on a proposal, draft, third-party summary, or example endpoint as a stable interface.
+5. Keep credentials, patient data, and identifying details out of tool names, resource identifiers, logs, and public examples.
 
 ---
 
-## 11. Well-known documents: what is served where
+## 11. Well-known documents and publication
 
-### 11.1 Rust server (`{API_ORIGIN}`)
+The blueprint does not approve any live discovery document or security contact. Before serving a `/.well-known/` resource:
 
-| Path | Standard | Content type | Notes |
-| --- | --- | --- | --- |
-| `/.well-known/oauth-protected-resource` and path-suffixed forms, e.g. `/.well-known/oauth-protected-resource/mcp`, `/…/fhir`, `/…/api/v1` | RFC 9728 | `application/json` | `resource` MUST equal the resource identifier exactly; list `authorization_servers`, `scopes_supported`, `bearer_methods_supported: ["header"]`. Omit parameters that are unset |
-| `/.well-known/oauth-authorization-server` | RFC 8414 | `application/json` | When the embedded issuer is used. `issuer` MUST equal the origin it is fetched from |
-| `/.well-known/openid-configuration` | OIDC Discovery | `application/json` | Same issuer |
-| `/fhir/.well-known/smart-configuration` | SMART App Launch | `application/json` (always JSON, regardless of `Accept`) | Capabilities, endpoints |
-| `/.well-known/api-catalog` | RFC 9727 | `application/linkset+json` | Must answer `GET` and `HEAD` (with `Link` header). Lists `/api/v1` (OpenAPI), `/fhir`, `/mcp` and links to the static docs |
-| `/.well-known/security.txt` | RFC 9116 | `text/plain` | Same content as the Pages copy |
-| `/.well-known/mcp/server-card.json` | Provisional (§10.4) | `application/json` | Optional |
+- identify the authoritative standard or registry entry and follow its current requirements;
+- verify the endpoint origin, content type, contact details, expiry, and maintenance owner;
+- ensure the host can serve the required path and headers; GitHub Pages and a running API server have different capabilities;
+- obtain repository visibility, content, and publication approval.
 
-### 11.2 `https://zarishhealth.github.io` (static)
-
-| Path | Content |
-| --- | --- |
-| `/.well-known/security.txt` | RFC 9116. `Contact:` must be a `mailto:` or `https:` URI; `Expires:` is required and must be refreshed at least yearly (a scheduled workflow opens an issue 60 days before expiry) |
-| `/.well-known/…` other | **Nothing else.** Pages cannot set content types for extensionless files or custom headers, and OAuth/MCP metadata must be served from the resource's own origin |
-
-`security.txt` template:
-
-```text
-Contact: https://github.com/zarishhealth/.github/security/advisories/new
-Expires: 2027-10-14T00:00:00.000Z
-Preferred-Languages: en, bn
-Canonical: https://zarishhealth.github.io/.well-known/security.txt
-Policy: https://github.com/zarishhealth/.github/blob/main/SECURITY.md
-```
-
-If a mailbox you control exists, add `Contact: mailto:…` as well. Do not use a mailbox on a domain you do not own.
-
-### 11.3 Do not publish
-
-`/.well-known/` names that are not in the IANA registry or defined by the specification you rely on (for example guessed `ai-plugin.json`, `agent.json`) unless you accept that they are unregistered.
+Do not publish example metadata, placeholder security contacts, OAuth discovery documents, or provisional MCP paths as if they were active endpoints.
 
 ---
 
 ## 12. Authentication and authorization
 
+The entries below are design candidates, not approved controls or an authorization implementation. Select them only after a threat model, privacy review, and deployment requirements are documented.
+
 | Topic | Rule |
 | --- | --- |
-| Protocols | OAuth 2.0 with PKCE (RFC 7636) for user flows; client credentials for service-to-service; OIDC for identity. MCP profiles OAuth 2.1 (an IETF draft — verify its status when you implement) |
-| Issuer | Sites: embedded issuer in `zarish-auth` (works offline; keys per site). HQ: any OIDC provider (Keycloak acceptable). Both expose the discovery documents in §11.1 |
-| Token format | Short-lived JWT access tokens (≤ 15 min), `aud` = resource URL, `iss` = issuer origin, `scope` space-delimited |
-| Offline | Site-local refresh tokens bound to the device key; device revocation list synced when possible |
-| Scopes | `<resource>.<action>`: `site.read`, `device.write`, `sync.write`, `sync.review`, `audit.read`, `report.read`; FHIR uses SMART v2 scopes (`patient/Observation.rs`, `user/Patient.cruds`) |
-| Roles → scopes | `admin`, `clinician`, `nurse`, `pharmacist`, `lab-technician`, `data-clerk`, `chw`, `auditor` (kebab-case role IDs); mapping lives in `content`, enforced in `zarish-auth` |
+| Protocols | OAuth 2.0 with PKCE (RFC 7636) and OpenID Connect are candidates for user-facing flows; service-to-service authentication requires a separate review |
+| Issuer | Open question. Decide identity provider and offline behavior through a threat model and architecture decision; do not assume an embedded issuer or vendor |
+| Token format | Decide token type, lifetime, audience, issuer, and validation rules based on the selected standards and threat model; no values are approved |
+| Offline | Offline sign-in, credential expiry, revocation, and recovery require a separately reviewed design |
+| Scopes | Define least-privilege scopes after resources, operations, and authorization requirements are known |
+| Roles → scopes | Define roles with clinical, operational, and privacy reviewers; no role model or enforcement service is verified |
 | Secrets | Never in Git; installed per site; rotated; test fixtures use obviously fake values |
 
 ---
 
 ## 13. Data and sync (carried over, tightened)
 
+These are proposed data-handling behaviors, not verified features. Encryption, key management, backup, and conflict-resolution details require implementation and independent review.
+
 - **Local store**: embedded SQLite per device, encrypted at rest (SQLCipher or equivalent) with a device-bound key.
-- **Central store** (optional): PostgreSQL. Not a free-tier shared service for real patient data (§14).
+- **Central store** (optional): PostgreSQL is the proposed database. Hosting and data handling are undecided (§14).
 - **Change log**: append-only, per resource version (`meta.versionId`), UUIDv7 change IDs, HLC/vector clock per device. Clinical history is never overwritten; edits append versions.
 - **Transport**: Protobuf envelopes (`zarishhealth.sync.v1`), compressed, over TLS; LAN peer sync discovers peers via mDNS and requires mutual authentication with per-device keys. A shared passphrase is not authentication.
 - **Conflict rule** (resolves the drafts' disagreement): non-overlapping field edits merge automatically; overlapping edits to clinical fields are **never** decided by "newest timestamp wins" — they enter the review queue (`/api/v1/sync-conflicts`). Non-clinical fields may use last-writer-wins with an audit record.
@@ -713,14 +668,14 @@ If a mailbox you control exists, add `Contact: mailto:…` as well. Do not use a
 
 ## 14. Security, privacy and compliance carry-overs
 
-1. **No PHI in URIs** (RFC 3986 and common log practice): the patient-registration spec's Individual/Service/Visit IDs embed ProGress ID/NID/DOB. Do not use them as identifiers or URL parts. Keep them, if the programme requires them, only as `Patient.identifier` values with strict access control.
+1. **No personal health information in URIs or identifiers.** Use opaque identifiers and follow a reviewed data-minimization and access-control design for any locally required identifiers.
 2. **QR codes**: encode only an opaque reference (and a check value), not "all patient fields". A printed code with name, address and service is a data leak.
 3. **Synthetic data only** in public repos (`content`, `docs`, tests, `distro-template`). Example patient names in the drafts must not appear in published files.
 4. **Secrets**: scan with gitleaks in CI; enable GitHub secret scanning with push protection; remove `local_sync_key` and hashes from templates.
-5. **Free-tier clouds** (Supabase, Render) and personal Google Drive: acceptable for development with synthetic data; not for patient data until a DPA, region and retention policy exist.
-6. **Compliance language**: follow `AGENTS.md`: never state the software or a deployment is HIPAA/GDPR-compliant or certified without evidence. The `hipaa-ready`, `fhir-r4`, `certified` badges are visual only; **`fhir-r4` is also wrong for an R5 product** — replace with `fhir-r5` or remove.
+5. **Hosting and storage**: no provider, contract, region, retention period, or data-processing agreement is approved by this proposal. Use synthetic data in development; do not place real health data with a service until responsible reviewers approve the specific deployment.
+6. **Compliance and conformance language**: follow `AGENTS.md`; never state the software or a deployment is compliant, certified, or conforms to FHIR without evidence and authorized review. A badge image is not evidence. Do not replace an R4 badge with an R5 claim unless the product has been validated against R5.
 7. **Supply chain**: `cargo-deny`, `cargo-audit`, Dependabot, pinned Action SHAs, signed releases (sigstore/cosign), SBOM per release, GitHub artifact attestations.
-8. **Vulnerability reporting**: GitHub Private Vulnerability Reporting (enable on every repo); `SECURITY.md` points to it; the `zarishsphere.com` email address is removed unless you control it.
+8. **Vulnerability reporting**: decide and verify a supported private reporting route for each repository before publishing security contact information.
 
 ---
 
@@ -741,9 +696,11 @@ Add `REUSE.toml` mapping directories to SPDX IDs, and run `reuse lint` in CI. On
 
 ## 16. CI/CD, versioning and releases
 
+These are organization-wide recommendations, not verified settings. Apply them only after repository owners review their feasibility, access, cost, and maintenance requirements.
+
 | Topic | Rule |
 | --- | --- |
-| Runners | GitHub-hosted standard runners (free for public repos). Do not create extra orgs to extend quota |
+| Runners | Select runners and budgets based on current GitHub plan, policy, and workload; do not create organizations solely to alter quotas |
 | Reusable workflows | In `.github`, versioned with tag `v1`; repos call `zarishhealth/.github/.github/workflows/<file>@v1` |
 | Required checks | `cargo fmt --check`, `cargo clippy -D warnings`, `cargo test`, `cargo deny check`, `cargo audit`, OpenAPI lint (Spectral), Buf lint/breaking, link check, `reuse lint`, gitleaks |
 | Rulesets | `main` protected: PR required, 1 review (2 for `core`/`fhir`), required checks, linear history, signed commits recommended, no force-push, no deletion |
@@ -755,53 +712,53 @@ Add `REUSE.toml` mapping directories to SPDX IDs, and run `reuse lint` in CI. On
 
 ---
 
-## 17. Migration checklist from the current state
+## 17. Migration checklist for verification
 
-Repositories present when this copy was reviewed: `.github`, `docs`, `builder`, and `zarishhealth.github.io`. Confirm repository roles against each repository's own documentation.
+The following are review prompts, not findings about the current state of another repository. Inspect each repository and obtain maintainer approval before renaming, deleting, publishing, or changing settings.
 
-| # | Action | Detail |
+| # | Review area | Safe next step |
 | --- | --- | --- |
-| 1 | Verify `builder` naming normalization | The current repository name is lowercase `builder`; confirm that Pages paths and links use the normalized name. |
-| 2 | Move both `DRAFT_*.md` files out of repo roots | Archive as `docs/architecture/legacy/…` or delete after this blueprint is adopted; keep this file as `docs/architecture/blueprint.md` and a copy at `.github/BLUEPRINT.md` |
-| 3 | Site `README.md` says `styles.css`, the file is `style.css` | Fix text; `index.html` already links `style.css?v=2` |
-| 4 | Brand assets served via `raw.githubusercontent.com` | Add workflow `sync-brand-to-pages.yml`: copy `.github/profile/assets/{logo,favicon,icon,social,app-icon}` → `zarishhealth.github.io/assets/brand/`; update `index.html` icon/OG/logo URLs to `/assets/brand/…` |
-| 5 | `head-snippet.html` uses `zarishhealth.example` | Replace with `https://zarishhealth.github.io/…` |
-| 6 | `BRANDING.md`: says assets live at `.github/profile/assets/` but repo path is `profile/assets/`; repo URL typo `https:github.com…`; "234 files" vs `ASSETS-INDEX.md` "239 files" | Correct; regenerate the index from the file list |
-| 7 | `profile/README.md`: anchors `#-why-zarishhealth` do not exist | Point to `#-what-it-does` |
-| 8 | Licences (§15) | One clear set |
-| 9 | `SECURITY.md` | Replace mailbox on a domain you do not own; keep GitHub private reporting |
-| 10 | `CODE_OF_CONDUCT_bn.md` | Rename to `CODE_OF_CONDUCT.bn.md` |
-| 11 | Duplicate `LICENSE` in the site repo (two different texts named `LICENSE`) | Keep one |
-| 12 | Create proposed repositories in §5.1 | Treat the catalog as a target, not an inventory of existing repositories. Review visibility and data classification before creating or publishing a repository. |
-| 13 | Add `/.well-known/security.txt` | §11.2 |
-| 14 | Replace `fhir-r4` badge | §14.6 |
-| 15 | Org settings | Enable: Private Vulnerability Reporting, secret scanning + push protection, Dependabot, 2FA required, default branch `main`, restricted Actions (allow-list + SHA pinning), custom properties from §4.1 |
+| 1 | Current repository names and roles | Confirm `.github`, `docs`, `builder`, and `zarishhealth.github.io` against their current READMEs and settings. |
+| 2 | Legacy drafts | Identify owners and canonical replacements; preserve history and do not delete or move drafts without approval. |
+| 3 | Website paths and assets | Check file paths, links, content types, and browser behavior before updating references or copying assets. |
+| 4 | Domain, email, and external URLs | Verify ownership and approval before treating a host, address, or service as an organization endpoint. |
+| 5 | Brand guidance and asset indexes | Compare documented paths and counts with the current asset tree; regenerate indexes only from verified files. |
+| 6 | Organization profile links | Check that every anchor and target file resolves in the current repository. |
+| 7 | Licenses and attribution | Have maintainers review each license and asset attribution; do not consolidate or replace license text based only on this proposal. |
+| 8 | Security reporting | Verify an approved contact route and repository capability before publishing security metadata. |
+| 9 | Filenames and URLs | Follow the naming proposal for new work; assess redirects and external links before renaming existing paths. |
+| 10 | FHIR badges or claims | Remove or correct a badge only after confirming the supported FHIR release and the product claim it represents. |
+| 11 | New repositories | Require an approved owner, purpose, visibility, data classification, maintenance plan, and publication review. |
+| 12 | GitHub organization settings | Review security controls with repository owners; do not apply settings from this proposal automatically. |
+| 13 | Pages and static metadata | Consider publishing only after visibility, content, asset licensing, and security review. |
 
 ---
 
-## 18. Roadmap (from 2026-10-14)
+## 18. Indicative delivery sequence (not a schedule)
 
-| Weeks | Deliverable | Exit test |
+The sequence below is a planning aid, not a commitment, staffing plan, or evidence that work has started. Each stage depends on review and approval.
+
+| Sequence | Possible deliverable | Evidence to require before proceeding |
 | --- | --- | --- |
-| 1–2 | §17 fixes; `.github` reusable workflows; Pages brand mirror; `security.txt` | `curl -I https://zarishhealth.github.io/.well-known/security.txt` → 200 `text/plain`; logo/OG load from Pages |
-| 3–4 | `core` workspace skeleton; `api` OpenAPI v1 draft; problem-type pages; `fhir` IG skeleton publishing to `/fhir/` | CI green; `/fhir/` and `/docs/problems/validation-failed` resolve |
-| 5–8 | `zarish-server`: `/livez`, `/readyz`, `/fhir/metadata`, `/api/v1/sites`, RFC 9457 errors, well-known documents; SQLite store | Contract tests pass against `api/openapi`; discovery documents validate |
-| 9–12 | Sync: change log, LAN peers, review queue; Tauri app shell | Two devices converge offline; conflicts land in `/api/v1/sync-conflicts` |
-| 13–16 | `mcp`: terminology + docs servers (no patient data), registry publication under `io.github.zarishhealth/*` | A 2026-07-28 client lists and calls tools through `Mcp-Method`/`Mcp-Name` |
-| 17+ | Pilot with synthetic data; security review; hosting decision for central tier; R6 evaluation | Written ADRs for each |
+| Foundation | Verify current repositories, owners, visibility, naming, licensing, and safety requirements | Maintainer-reviewed inventory and written decisions |
+| Contracts | If approved, draft API and FHIR contracts against selected standards | Versioned contracts, conformance checks, and review records |
+| Local service | If approved, implement a minimal local service and storage layer | Tests, threat model, resource measurements, and recovery behavior |
+| Synchronization | If approved, add authenticated sync and conflict handling | Failure, retry, data-integrity, and conflict-review tests |
+| Optional tooling | Evaluate read-only documentation or terminology tooling | Privacy, authorization, security, and clinical-safety review |
+| Pilot | Use synthetic data until a separate data and deployment approval exists | Written safety, operational, and deployment decisions |
 
 ---
 
 ## 19. Open questions and unverified items
 
-1. **MCP server-card path** is not settled (§10.4).
-2. **OAuth 2.1** status: MCP references it; confirm whether it is an RFC when you implement.
+1. **MCP discovery conventions**: verify the selected official specification and registry before implementation.
+2. **OAuth profile**: verify the current IETF status and the exact requirements of the MCP version selected for implementation.
 3. **FHIR terminology URIs and licences** (SNOMED CT, LOINC, ICD-11) must be confirmed per deployment country.
-4. **Host for `{API_ORIGIN}`** is undecided. Options: self-hosted at a project office with a dynamic-DNS or tunnel service, or a paid cloud with a DPA. This decision affects TLS and OAuth, not paths.
-5. **GitHub raw SVG behaviour**: verify in browser devtools before relying on §2 rule 4 (conclusion is widely reported; check once).
+4. **Host for `{API_ORIGIN}`** is undecided. Compare deployment models using security, jurisdiction, service continuity, operational capacity, and contractual requirements; no provider is approved here.
+5. **Static asset behavior**: verify content type, browser behavior, licensing, and access before depending on a hosting path.
 6. **Idempotency-Key** and **RateLimit** headers are IETF drafts; treat as conventions.
 7. **UNHCR / Bangladesh identifier system URIs** need confirmation from the issuing authorities.
-8. **Exact stable versions** of Rust, Axum, Tauri, SQLx and SQLite were not re-verified for this document; pin the versions from `rustup`/`cargo` on the day you create `core`. Axum 0.8.x and Tauri 2.x are the lines in use.
+8. **Version selection**: the dated [technology baseline](../reference/technology-baseline.md) is only an ecosystem snapshot. Before implementation, select compatible supported versions and pin them in the relevant toolchain and lock files; do not infer that a package is in use here.
 
 ---
 
@@ -809,11 +766,12 @@ Repositories present when this copy was reviewed: `.github`, `docs`, `builder`, 
 
 - RFC 3986 (URI), RFC 9110 (HTTP semantics), RFC 8615 (Well-Known URIs), RFC 9116 (`security.txt`), RFC 8414, RFC 9728, RFC 9727, RFC 9457, RFC 9745, RFC 9562, RFC 8288, RFC 3339 — rfc-editor.org
 - IANA Well-Known URIs registry — [IANA Well-Known URIs registry](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
-- MCP specification 2026-07-28 (transports, authorization, authorization-server discovery) — [specification](https://modelcontextprotocol.io/specification/2026-07-28/); [release notes](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+- MCP specification 2026-07-28 — [official specification](https://modelcontextprotocol.io/specification/2026-07-28/)
 - MCP Registry (namespaces, `server.json`) — [MCP Registry](https://modelcontextprotocol.io/registry/about)
-- MCP server-card proposals (SEP-1649/SEP-2127) and related IETF drafts — [MCP DNS discovery](https://datatracker.ietf.org/doc/draft-morrison-mcp-dns-discovery/), [MCP discovery URI](https://datatracker.ietf.org/doc/draft-serra-mcp-discovery-uri/)
-- SMART App Launch 2.1 — [SMART App Launch](https://www.hl7.org/fhir/smart-app-launch/)
-- FHIR R5/R6 status — [FHIR version overview](https://mitre.github.io/fhir-for-research/modules/fhir-versions)
+- SMART App Launch — [current published guide](https://hl7.org/fhir/smart-app-launch/)
+- FHIR release status — [HL7 FHIR version policy](https://hl7.org/fhir/versions.html)
+- Technology versions and toolchain pinning — [technology baseline](../reference/technology-baseline.md)
 - Rust API Guidelines (naming) — [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/naming.html)
-- GitHub Pages site types and URLs — GitHub Docs "What is GitHub Pages"; `.nojekyll` and dot-folders — GitHub community threads on Pages and `.well-known`
+- GitHub Pages site types and URLs — [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
+- GitHub Pages publishing sources — [GitHub Docs](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - GitHub organization profile (`.github/profile/README.md`) — GitHub Docs

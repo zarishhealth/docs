@@ -17,7 +17,7 @@ This file defines how AI agents work in `zarishhealth/docs`. The documentation i
 - Never put personal data, secrets, access tokens, or private source material in URLs, diagrams, examples, front matter, or issues.
 - Do not describe the software or a deployment as HIPAA-, GDPR-, or otherwise compliant, certified, secure, or production-ready without evidence and an authorized review.
 - Explain that standards, hosting, and legal obligations depend on implementation and jurisdiction. Link to authoritative sources and mark unresolved items.
-- Do not configure public publishing by default. This repository is private and GitHub Pages is disabled as of 2026-10-16; publishing requires an explicit visibility and content review.
+- Do not configure public publishing by default. This repository is private and GitHub Pages is disabled as of 2026-10-16. GitHub Pages sites are publicly available even when their source repository is private, if the plan and organization allow Pages; publishing requires an explicit visibility and content review.
 
 ## Repository layout
 
@@ -30,6 +30,7 @@ This file defines how AI agents work in `zarishhealth/docs`. The documentation i
 | `content/guides/` | Task-oriented instructions |
 | `content/reference/` | Stable naming rules and other lookup information |
 | `resources/templates/` | Reusable article, decision, and diagram templates |
+| `resources/source-corpus-disposition.csv` | Maintainer-only disposition inventory for local source drafts; do not add the source files |
 | `resources/resources-registry.csv` | Index of reusable repository resources |
 | `.agents/skills/` | Reusable agent skills and their registry |
 | `assets/` | Source brand kit; keep its supplied asset filenames stable |
