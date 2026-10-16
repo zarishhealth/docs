@@ -1,22 +1,20 @@
-<!--
-Thank you for contributing to this project! You must fill out the information below before we can review this pull request. By explaining why you're making a change (or linking to an issue) and what changes you've made, we can triage your pull request to the best possible team for review.
--->
+## Why is this change needed?
 
-### Why:
+<!-- Link the issue or describe the reader need. -->
 
-<!-- Paste the issue link or number here -->
-Closes:
+## What changed?
 
-<!-- If there's an existing issue for your change, please link to it above.
-If there's _not_ an existing issue, please open one first to make it more likely that this update will be accepted: https://github.com/zarishhealth/docs/issues/new/choose. -->
+<!-- Summarize the pages, templates, or site configuration changed. -->
 
-### What's being changed (if available, include any code snippets, screenshots, or gifs):
+## Evidence and review
 
-<!-- Let us know what you are changing. Share anything that could provide the most context.
-If you made changes to the `content` directory, a table will populate in a comment below with links to the review and current production articles. -->
+- [ ] Factual and standards-based claims link to authoritative sources.
+- [ ] Proposal, adopted guidance, and verified implementation are clearly distinguished.
+- [ ] Examples are synthetic and contain no personal data, secrets, or credentials.
+- [ ] Diagrams have equivalent text explanations.
+- [ ] `npm run lint:md` passes.
+- [ ] `npm run build` passes.
 
-### Check off the following:
+**Open questions or review needed:**
 
-- [ ] A subject matter expert (SME) has reviewed the technical accuracy of the content in this PR. In most cases, the author can be the SME. Open source contributions may require an SME review from GitHub staff.
-- [ ] The changes in this PR meet [the docs fundamentals that are required for all content](http://docs.github.com/en/contributing/writing-for-github-docs/about-githubs-documentation-fundamentals).
-- [ ] All CI checks are passing and the changes look good in the review environment.
+<!-- Name any technical, clinical, privacy, legal, or accessibility review that is still needed. -->

@@ -4,8 +4,7 @@
 
 ## Table of contents
 
-- [zarishhealth — Brand Guidelines](#zarishhealth--brand-guidelines)
-  - [Table of contents](#table-of-contents)
+- [Table of contents](#table-of-contents)
   - [1. What this kit is](#1-what-this-kit-is)
   - [2. Quick start](#2-quick-start)
   - [3. File naming convention](#3-file-naming-convention)
@@ -54,7 +53,7 @@ Everything is generated from **one vector master**, so every file is pixel-consi
 
 **Drop the folder into your repo:**
 
-```
+```text
 docs/assets/
 ```
 
@@ -83,7 +82,7 @@ docs/assets/
 
 Every file follows one predictable pattern:
 
-```
+```text
 zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>
 ```
 
@@ -98,7 +97,7 @@ zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>
 
 **Worked examples**
 
-```
+```text
 zarishhealth-logo-horizontal-dark.svg         logo, for dark backgrounds, vector
 zarishhealth-icon-circle-navy-256x256.png     symbol, navy circle plate, 256px
 zarishhealth-favicon-web-32x32.png            favicon, web target, 32px
@@ -116,7 +115,7 @@ Lowercase, hyphen-separated, no spaces, no underscores, no version numbers in fi
 
 *Repository URL:* [https://github.com/zarishhealth/docs](https://github.com/zarishhealth/docs)
 
-```
+```text
 /assets/
 ├── BRANDING.md               ← you are here
 ├── SKILL.md                  ← machine-readable brand skill for AI agents
@@ -425,12 +424,13 @@ Eleven drop-in shields in `badge/` (SVG and 3× PNG), sized and styled to sit ne
 ```markdown
 ![powered by zarishhealth](./docs/assets/badge/zarishhealth-badge-readme-powered-by.svg)
 ![status](./docs/assets/badge/zarishhealth-badge-readme-status-live.svg)
-![FHIR R4](./docs/assets/badge/zarishhealth-badge-readme-fhir-r4.svg)
 ```
 
 Available: `powered-by`, `built-with`, `part-of`, `certified`, `status-live`, `license-mit`, `docs`, `version`, `fhir-r4`, `hipaa-ready`, `open-source`.
 
 > `hipaa-ready`, `fhir-r4` and `certified` are **visual badges, not attestations.** Only display them where the underlying claim is actually true for your deployment.
+>
+> The `fhir-r4` badge is a legacy asset and must not be used to describe the proposed FHIR R5 direction in the organization blueprint. Do not substitute an R5 conformance claim until an implementation has been verified.
 
 You can also drive shields.io with brand colours:
 
@@ -442,26 +442,26 @@ You can also drive shields.io with brand colours:
 
 ## 16. Hot-linking from GitHub (real-time URLs)
 
-Once the folder is committed to `docs/assets/`, every file is live and always current.
+Once the folder is committed to the repository, each file has a versioned source path. For a README in this repository, use a relative path such as `./assets/logo/zarishhealth-logo-horizontal-light.svg`. For another repository, copy the approved asset into that repository or use its reviewed static-site host.
 
 **Pattern**
 
-```
-https://raw.githubusercontent.com/<OWNER>/<REPO>/main/.github/profile/assets/<path>
+```text
+https://github.com/<OWNER>/<REPO>/blob/<BRANCH>/<PATH>
 ```
 
 **Example**
 
 ```markdown
-<img src="https://raw.githubusercontent.com/zarishhealth/docs/main/assets/logo/zarishhealth-logo-horizontal-dark.svg" width="420">
+<img src="./assets/logo/zarishhealth-logo-horizontal-light.svg" width="420" alt="ZarishHealth">
 ```
 
 **Notes that will save you an hour**
 
-- `raw.githubusercontent.com` serves SVG as `text/plain`, so it renders in `<img>` tags in Markdown but **not** as a live stylesheet. For SVG embedded in HTML pages, serve it from your own domain or GitHub Pages.
+- Do not assume a GitHub source URL is a production web-asset host. Serve assets from the destination site's configured static directory and verify the content type.
 - GitHub proxies README images through Camo and caches them. After replacing a file, the old version can persist for minutes — append `?v=2` to bust it.
 - **Use a branch name (`main`), never a commit SHA**, if you want the URL to stay current automatically. Use a tag (`v1.0.0`) if you want it frozen.
-- GitHub Pages (`https://<owner>.github.io/<repo>/…`) serves correct MIME types and is the better host for favicons and manifests.
+- GitHub Pages can serve assets for an approved public site. Confirm that Pages is enabled and the path is correct before linking to it.
 - Theme-aware README images:
 
 ```markdown

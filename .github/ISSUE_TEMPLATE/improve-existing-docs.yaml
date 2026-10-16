@@ -1,45 +1,53 @@
 name: Improve existing content
-description: Make a suggestion to improve the content in an existing article.
-labels:
-  - content
+description: Report an issue or suggest an improvement to ZarishHealth documentation.
+title: "[docs] "
 body:
   - type: markdown
     attributes:
       value: |
-        * Before you file an issue read the [Contributing guide](https://docs.github.com/en/contributing).
-        * Check to make sure someone hasn't already opened a similar [issue](https://github.com/zarishhealth/docs/issues).
+        Before you file an issue, check the [contributing guide](https://github.com/zarishhealth/docs/blob/main/content/guides/contributing.md) and search for a similar issue.
+        Do not include patient, beneficiary, staff, credential, or other confidential information.
 
-  - type: checkboxes
-    id: terms
+  - type: input
+    id: page
     attributes:
-      label: Code of Conduct
-      description: This project has a Code of Conduct that all participants are expected to understand and follow.
-      options:
-        - label: I have read and agree to the GitHub Docs project's [Code of Conduct](https://github.com/zarishhealth/docs/blob/main/.github/CODE_OF_CONDUCT.md)
-          required: true
-
-  - type: textarea
-    attributes:
-      label: What article on docs.github.com is affected?
-      description: Please link to the article you'd like to see updated.
+      label: Which page needs attention?
+      description: Paste the GitHub page or file link. If you do not know it, describe the topic.
+      placeholder: https://github.com/zarishhealth/docs/blob/main/content/...
     validations:
       required: true
 
   - type: textarea
+    id: reader-need
     attributes:
-      label: What part(s) of the article would you like to see updated?
-      description: |
-        - Give as much detail as you can to help us understand the change you want to see. 
-        - Why should the docs be changed? What use cases does it support? 
-        - What is the expected outcome or behavior?
+      label: What is the reader trying to do?
+      description: Describe the reader and what they need to understand or accomplish.
     validations:
       required: true
 
   - type: textarea
+    id: problem
     attributes:
-      label: Additional information
+      label: What is unclear, missing, or incorrect?
       description: |
-        - Are you able to reliably reproduce the problem? How often does it occur? How many users are affected?
-        - Add any other context or screenshots about the feature here.
+        Quote or summarize the passage. Explain why it should change and what a useful outcome would be.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources or supporting context
+      description: Link to authoritative references. Do not attach real health data or confidential screenshots.
     validations:
       required: false
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety and community
+      options:
+        - label: I have not included patient, beneficiary, staff, credential, or other confidential information.
+          required: true
+        - label: I have read the [Code of Conduct](https://github.com/zarishhealth/docs/blob/main/.github/CODE_OF_CONDUCT.md).
+          required: true

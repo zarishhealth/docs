@@ -3,6 +3,7 @@
 **239 files · 9.56 MB.** Naming: `zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>` — see [BRANDING.md](./BRANDING.md) §3.
 
 ## Root — docs, tokens & web config  
+
 `9 files`
 
 | File | Size |
@@ -18,6 +19,7 @@
 | `site.webmanifest` | 1.0 KB |
 
 ## `logo/` — lockups & wordmarks  
+
 `42 files`
 
 | File | Size |
@@ -66,6 +68,7 @@
 | `logo/zarishhealth-wordmark-mono-white.svg` | 12.5 KB |
 
 ## `icon/` — symbol only  
+
 `66 files`
 
 | File | Size |
@@ -138,6 +141,7 @@
 | `icon/zarishhealth-icon-transparent-white.svg` | 1.1 KB |
 
 ## `favicon/` — browser favicons  
+
 `13 files`
 
 | File | Size |
@@ -157,6 +161,7 @@
 | `favicon/zarishhealth-favicon-web.svg` | 0.9 KB |
 
 ## `app-icon/` — iOS · Android · PWA · desktop  
+
 `18 files`
 
 | File | Size |
@@ -181,6 +186,7 @@
 | `app-icon/zarishhealth-appicon-windows-310x310.png` | 7.8 KB |
 
 ## `avatar/` — profile pictures  
+
 `11 files`
 
 | File | Size |
@@ -198,6 +204,7 @@
 | `avatar/zarishhealth-avatar-social-master.svg` | 1.1 KB |
 
 ## `social/` — link-preview / Open Graph cards  
+
 `16 files`
 
 | File | Size |
@@ -220,6 +227,7 @@
 | `social/zarishhealth-social-x-1200x675.svg` | 78.9 KB |
 
 ## `banner/` — headers & covers  
+
 `26 files`
 
 | File | Size |
@@ -252,6 +260,7 @@
 | `banner/zarishhealth-banner-youtube-channel-2560x1440.svg` | 72.0 KB |
 
 ## `badge/` — README shields  
+
 `22 files`
 
 | File | Size |
@@ -280,6 +289,7 @@
 | `badge/zarishhealth-badge-readme-version.svg` | 12.3 KB |
 
 ## `pattern/` — backgrounds & watermark  
+
 `8 files`
 
 | File | Size |
@@ -294,6 +304,7 @@
 | `pattern/zarishhealth-watermark-print-512x512.svg` | 1.1 KB |
 
 ## `reference/` — brand sheets (documentation, not production UI)  
+
 `7 files`
 
 | File | Size |

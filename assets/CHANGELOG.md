@@ -5,6 +5,7 @@
 Initial release of the zarishhealth brand kit.
 
 ### Added
+
 - Vector master mark: shield + stethoscope "Z" + cross, with the cross gap drawn as
   split geometry (no SVG masks) so it renders identically in every engine.
 - Simplified small-size mark for rendering below 32 px.
@@ -26,4 +27,5 @@ Initial release of the zarishhealth brand kit.
 - `BRANDING.md` guidelines and `SKILL.md` machine-readable brand spec.
 
 ### Known placeholders
+
 - Tagline "Open health infrastructure" on `social/` cards — replace with the real one.

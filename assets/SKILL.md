@@ -35,7 +35,7 @@ Do **not** trigger for: unrelated projects, generic design questions with no zar
 
 ## Colour tokens
 
-```
+```text
 primary        #017CF5   ZarishHealth Blue      mark, links, primary action
 primary-hover  #0163C4
 primary-active #014A93                    also: blue for body text on white
@@ -97,7 +97,7 @@ Ladder: H1 56–72/800 · H2 40–48/700 · H3 28–32/700 · body-lg 20–22/40
 
 ## Canonical sizes
 
-```
+```text
 favicon      16, 32, 48 (in .ico) · svg · 96 · 192 · 512
 apple-touch  180 (opaque)
 ios store    1024 (no alpha)

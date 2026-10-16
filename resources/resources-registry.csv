@@ -1,0 +1,7 @@
+resource_id,path,type,audience,purpose,status,last_reviewed
+concept-template,resources/templates/concept.md,template,Documentation authors,Write a concept page,adopted,2026-10-16
+how-to-template,resources/templates/how-to.md,template,Documentation authors,Write a task-oriented guide,adopted,2026-10-16
+reference-template,resources/templates/reference.md,template,Documentation authors,Write lookup content,adopted,2026-10-16
+troubleshooting-template,resources/templates/troubleshooting.md,template,Documentation authors,Document diagnosis and recovery steps,adopted,2026-10-16
+decision-record-template,resources/templates/decision-record.md,template,Maintainers,Record a proposed architecture decision,adopted,2026-10-16
+diagram-brief-template,resources/templates/diagram-brief.md,template,Documentation authors,Define and review an accessible diagram,adopted,2026-10-16

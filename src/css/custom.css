@@ -1,0 +1,23 @@
+:root {
+  --ifm-color-primary: #0163c4;
+  --ifm-color-primary-dark: #014a93;
+  --ifm-color-primary-darker: #013f7d;
+  --ifm-color-primary-darkest: #013366;
+  --ifm-color-primary-light: #017cf5;
+  --ifm-color-primary-lighter: #258ef6;
+  --ifm-color-primary-lightest: #4fa3f8;
+  --ifm-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular,
+    monospace;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #3d97f7;
+  --ifm-color-primary-dark: #2588f5;
+  --ifm-color-primary-darker: #147df3;
+  --ifm-color-primary-darkest: #0b69d5;
+  --ifm-color-primary-light: #55a5f8;
+  --ifm-color-primary-lighter: #70b3f9;
+  --ifm-color-primary-lightest: #9dcafb;
+}

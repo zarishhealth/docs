@@ -1,0 +1,11 @@
+version: 1
+skills:
+  - name: docs-authoring
+    path: .agents/skills/docs-authoring/SKILL.md
+    description: Choose a reader-centered content type and write safe, source-linked documentation.
+  - name: diagram-accessibility
+    path: .agents/skills/diagram-accessibility/SKILL.md
+    description: Plan, create, explain, and review accessible Mermaid diagrams.
+  - name: zarishhealth-brand
+    path: assets/SKILL.md
+    description: Apply the approved ZarishHealth identity to branded material.

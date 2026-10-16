@@ -3,21 +3,18 @@ zarishhealth Documentation — Creative Commons Attribution 4.0 International gr
 Copyright (c) 2026 Mohammad Ariful ISLAM <code.and.brain@gmail.com>
 
 The documentation, prompts, templates, and brand-guidance content in this
-repository are additionally licensed under the Creative Commons
-Attribution 4.0 International Public License (CC BY 4.0). You may use
-that content under EITHER the Apache License 2.0 (see LICENSE) for code
-and automation, OR CC BY 4.0 for documentation and creative content, as
-explained in the README "License" section.
+repository are licensed under the Creative Commons Attribution 4.0
+International Public License (CC BY 4.0). Code and automation are licensed
+under Apache-2.0; see `LICENSE_CODE`. The brand kit has its own terms in
+`assets/LICENSE.md`.
 
 Attribution for CC BY 4.0 reuse: credit "Mohammad Ariful ISLAM,
 docs (zarishhealth)", link to https://github.com/zarishhealth/docs,
 and note changes made.
 
-Third-party material keeps its own terms and is NOT covered by this
-grant: Font Awesome Free icons and OCHA Humanitarian Icons (both CC BY
-4.0, see skills/cpintl-brand/assets/icons/ATTRIBUTION-*.md) and the
-official CPI logo files (restricted to CPI-authorized use, see
-skills/cpintl-brand/SKILL.md).
+This grant applies only to material that the licensor has the right to
+license. Third-party material, if included, remains subject to its own
+license and attribution requirements. Verify those rights before reuse.
 
 Full CC BY 4.0 legal text below (verbatim from
 https://creativecommons.org/licenses/by/4.0/legalcode.txt):
