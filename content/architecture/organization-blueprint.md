@@ -272,7 +272,6 @@ The layouts below are target examples, not inventories of current repositories. 
 │   ├── workflows/
 │   │   ├── reusable-rust-ci.yml      ← called as zarishhealth/.github/.github/workflows/reusable-rust-ci.yml@v1
 │   │   ├── reusable-docs-pages.yml
-│   │   ├── sync-brand-to-pages.yml   ← copies profile/assets/ → zarishhealth.github.io (§17)
 │   │   └── lint.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── ISSUE_TEMPLATE/
@@ -285,7 +284,7 @@ The layouts below are target examples, not inventories of current repositories. 
 │   └── rust-ci.properties.json
 ├── profile/
 │   ├── README.md                     ← renders at github.com/zarishhealth
-│   └── assets/                       ← brand kit (unchanged names)
+│   └── assets/                       ← the single brand kit; every consumer loads it from here
 ├── AGENTS.md
 ├── CODE_OF_CONDUCT.md
 ├── CODE_OF_CONDUCT.bn.md
@@ -309,8 +308,6 @@ zarishhealth.github.io/
 │   └── security.txt                  ← RFC 9116 (see §11.2)
 ├── index.html
 ├── style.css
-├── assets/
-│   └── brand/                        ← mirrored from .github/profile/assets (logo, favicon, social)
 ├── robots.txt
 ├── sitemap.xml
 ├── 404.html
@@ -318,7 +315,7 @@ zarishhealth.github.io/
 └── LICENSE
 ```
 
-Published at `https://zarishhealth.github.io/`. Favicon, OG and logo URLs use `/assets/brand/…`, not `raw.githubusercontent.com`.
+Published at `https://zarishhealth.github.io/`. Brand images (favicon, OG, logo) load from `https://raw.githubusercontent.com/zarishhealth/.github/main/profile/assets/…`; this repository keeps no copy of the kit.
 
 ### 6.3 `core` (Cargo workspace)
 
@@ -447,8 +444,7 @@ docs/                                 rfcs/
 │   ├── guides/
 │   └── reference/
 ├── resources/templates/              ← reusable article, decision, and diagram templates
-├── assets/                           ← source brand kit
-├── static/                           ← selected assets for the generated docs site
+├── static/                           ← selected assets, copied from the .github brand kit
 ├── agent-skills/skills/                   ← reusable authoring skills
 └── README.md
 ```

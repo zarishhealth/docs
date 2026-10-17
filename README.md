@@ -10,7 +10,6 @@ Start with the [documentation home](content/index.md), [getting started](content
 | --- | --- |
 | `content/` | Reviewed guides, architecture, references, and the glossary |
 | `resources/` | Reusable templates, resource registry, and maintainer-only source disposition inventory |
-| `assets/` | Source brand kit and its documentation |
 | `static/` | Selected brand assets copied for the docs site |
 | `agent-skills/skills/` | Writing and diagram skills for agents |
 | `raw_inputs/`, `raw_files/` | Local-only, ignored intake; never commit or publish these folders |
@@ -46,4 +45,4 @@ See [contributing](content/guides/contributing.md), the [content model](content/
 
 ## License
 
-This repository currently contains separate license texts: `LICENSE` for the documentation and `LICENSE_CODE` for code and automation. The brand kit has its own `assets/license.md`. Review those files before reusing material; this README does not change their terms.
+This repository currently contains separate license texts: `LICENSE` for the documentation and `LICENSE_CODE` for code and automation. The brand kit (in `zarishhealth/.github/profile/assets`) has its own `license.md`. Review those files before reusing material; this README does not change their terms.

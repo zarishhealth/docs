@@ -7,5 +7,5 @@ skills:
     path: agent-skills/skills/diagram-accessibility/SKILL.md
     description: Plan, create, explain, and review accessible Mermaid diagrams.
   - name: zarishhealth-brand
-    path: assets/SKILL.md
-    description: Apply the approved ZarishHealth identity to branded material.
+    path: https://github.com/zarishhealth/.github/blob/main/profile/assets/SKILL.md
+    description: Apply the approved ZarishHealth identity to branded material (the kit lives in zarishhealth/.github).

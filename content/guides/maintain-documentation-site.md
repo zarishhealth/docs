@@ -43,9 +43,9 @@ The GitHub Actions workflow runs these checks for pushes to `main`, pull request
 
 ## Update a branded site asset
 
-The source artwork remains in `assets/`. The site uses selected copies under `static/img/`. When an approved source logo or favicon changes:
+The source artwork lives in `zarishhealth/.github/profile/assets/`. The site uses selected copies under `static/img/`. When an approved source logo or favicon changes:
 
-1. Read [the brand skill](https://github.com/zarishhealth/docs/blob/main/assets/SKILL.md) and [brand guidelines](https://github.com/zarishhealth/docs/blob/main/assets/branding.md).
+1. Read [the brand skill](https://github.com/zarishhealth/.github/blob/main/profile/assets/SKILL.md) and [brand guidelines](https://github.com/zarishhealth/.github/blob/main/profile/assets/BRANDING.md).
 2. Copy only the approved source file into the matching `static/img/` location, preserving its filename.
 3. Check that `docusaurus.config.js` still points to the file.
 4. Preview the light and dark themes, then run the Markdown and build checks.
