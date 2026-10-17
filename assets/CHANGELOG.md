@@ -24,7 +24,7 @@ Initial release of the zarishhealth brand kit.
 - Design tokens: `brand-tokens.json`, `brand.css` (light + dark).
 - Web config: `site.webmanifest`, `browserconfig.xml`, `head-snippet.html`.
 - Reference sheets: palette, typography, clear space, overview.
-- `BRANDING.md` guidelines and `SKILL.md` machine-readable brand spec.
+- `branding.md` guidelines and `SKILL.md` machine-readable brand spec.
 
 ### Known placeholders
 

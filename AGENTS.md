@@ -32,7 +32,7 @@ This file defines how AI agents work in `zarishhealth/docs`. The documentation i
 | `resources/templates/` | Reusable article, decision, and diagram templates |
 | `resources/source-corpus-disposition.csv` | Maintainer-only disposition inventory for local source drafts; do not add the source files |
 | `resources/resources-registry.csv` | Index of reusable repository resources |
-| `.agents/skills/` | Reusable agent skills and their registry |
+| `agent-skills/skills/` | Reusable agent skills and their registry |
 | `assets/` | Source brand kit; keep its supplied asset filenames stable |
 | `static/` | Small, selected assets copied from `assets/` for the generated site |
 | `raw_inputs/`, `raw_files/` | Ignored local-only intake; never publish |
@@ -64,4 +64,4 @@ Fix broken local links, missing images, and Markdown errors introduced by the ch
 
 ## Skills
 
-Read `.agents/skills/registry.yaml` and the relevant skill before using a specialized writing or diagram procedure. Read `assets/SKILL.md` and `assets/BRANDING.md` before creating or changing branded material.
+Read `agent-skills/skills/registry.yaml` and the relevant skill before using a specialized writing or diagram procedure. Read `assets/SKILL.md` and `assets/branding.md` before creating or changing branded material.

@@ -117,10 +117,10 @@ Lowercase, hyphen-separated, no spaces, no underscores, no version numbers in fi
 
 ```text
 /assets/
-├── BRANDING.md               ← you are here
+├── branding.md               ← you are here
 ├── SKILL.md                  ← machine-readable brand skill for AI agents
-├── ASSETS-INDEX.md           ← every file, with byte sizes
-├── LICENSE.md
+├── assets-index.md           ← every file, with byte sizes
+├── license.md
 ├── brand-tokens.json         ← W3C-style design tokens
 ├── brand.css                 ← CSS custom properties, light + dark
 ├── head-snippet.html         ← paste-ready <head> block
@@ -533,13 +533,13 @@ magick out-16.png out-32.png out-48.png zarishhealth-favicon-web.ico
 rsvg-convert -f pdf logo/zarishhealth-logo-horizontal-mono-black.svg -o logo-print.pdf
 ```
 
-**Adding a new size:** keep the naming convention, add the file to `ASSETS-INDEX.md`, and note the platform in the matching section above.
+**Adding a new size:** keep the naming convention, add the file to `assets-index.md`, and note the platform in the matching section above.
 
 ---
 
 ## 20. Licence & contact
 
-Artwork, tokens and documentation in this kit are released under the **MIT Licence** (see `LICENSE.md`) — free to use, modify and redistribute.
+Artwork, tokens and documentation in this kit are released under the **MIT Licence** (see `license.md`) — free to use, modify and redistribute.
 
 **Trademark is separate from copyright.** The zarishhealth name and mark identify the project. You may use them to *refer* to zarishhealth — "built with zarishhealth", "compatible with zarishhealth". You may not use them to imply endorsement, to brand a fork, or in a way that suggests your product *is* zarishhealth.
 

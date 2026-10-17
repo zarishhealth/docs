@@ -449,7 +449,7 @@ docs/                                 rfcs/
 ├── resources/templates/              ← reusable article, decision, and diagram templates
 ├── assets/                           ← source brand kit
 ├── static/                           ← selected assets for the generated docs site
-├── .agents/skills/                   ← reusable authoring skills
+├── agent-skills/skills/                   ← reusable authoring skills
 └── README.md
 ```
 
