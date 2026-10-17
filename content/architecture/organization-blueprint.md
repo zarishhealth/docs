@@ -140,7 +140,7 @@ Keywords MUST/SHOULD/MAY are used as in RFC 2119.
 | Item | Rule | Example |
 | --- | --- | --- |
 | Default branch | `main` (never renamed: raw/Pages URLs depend on it) | |
-| Work branches | `feat/<issue>-<slug>`, `fix/…`, `docs/…`, `chore/…`, `refactor/…`, `test/…` | `feat/142-sync-conflict-queue` |
+| Work branches | `<type>/<slug>` where `<type>` is `feat`, `fix`, `docs`, `chore`, `refactor`, `test`; an issue number may prefix the slug | `feat/sync-conflict-queue`, `feat/142-sync-conflict-queue` |
 | Release branches | `release/<major>.<minor>` (only when a patch line is maintained) | `release/1.2` |
 | Tags | `v<semver>`; in a workspace, per-crate tags `<crate>-v<semver>` | `v1.4.0`, `zarish-sync-v0.3.1` |
 | Pre-release | SemVer pre-release | `v1.0.0-rc.1` |
