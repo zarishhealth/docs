@@ -33,8 +33,7 @@ This file defines how AI agents work in `zarishhealth/docs`. The documentation i
 | `resources/source-corpus-disposition.csv` | Maintainer-only disposition inventory for local source drafts; do not add the source files |
 | `resources/resources-registry.csv` | Index of reusable repository resources |
 | `agent-skills/skills/` | Reusable agent skills and their registry |
-| `assets/` | Source brand kit; keep its supplied asset filenames stable |
-| `static/` | Small, selected assets copied from `assets/` for the generated site |
+| `static/` | Small, selected assets (copied from `zarishhealth/.github/profile/assets`) for the generated site |
 | `raw_inputs/`, `raw_files/` | Ignored local-only intake; never publish |
 
 Tool-required names such as `docusaurus.config.js`, `sidebars.js`, `static/`, `src/`, `README.md`, and GitHub's `.github/` paths are exceptions to the organization-wide kebab-case rule. Use lowercase kebab-case for new content files and directories.
@@ -64,4 +63,4 @@ Fix broken local links, missing images, and Markdown errors introduced by the ch
 
 ## Skills
 
-Read `agent-skills/skills/registry.yaml` and the relevant skill before using a specialized writing or diagram procedure. Read `assets/SKILL.md` and `assets/branding.md` before creating or changing branded material.
+Read `agent-skills/skills/registry.yaml` and the relevant skill before using a specialized writing or diagram procedure. Read the [brand skill](https://github.com/zarishhealth/.github/blob/main/profile/assets/SKILL.md) and [brand guidelines](https://github.com/zarishhealth/.github/blob/main/profile/assets/BRANDING.md) before creating or changing branded material.
