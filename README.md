@@ -12,7 +12,7 @@ Start with the [documentation home](content/index.md), [getting started](content
 | `resources/` | Reusable templates, resource registry, and maintainer-only source disposition inventory |
 | `assets/` | Source brand kit and its documentation |
 | `static/` | Selected brand assets copied for the docs site |
-| `.agents/skills/` | Writing and diagram skills for agents |
+| `agent-skills/skills/` | Writing and diagram skills for agents |
 | `raw_inputs/`, `raw_files/` | Local-only, ignored intake; never commit or publish these folders |
 
 See [`resources/README.md`](resources/README.md) for the maintainer resource index and the disposition record for the local draft corpus. The raw source files themselves remain ignored and are not included.
@@ -46,4 +46,4 @@ See [contributing](content/guides/contributing.md), the [content model](content/
 
 ## License
 
-This repository currently contains separate license texts: `LICENSE` for the documentation and `LICENSE_CODE` for code and automation. The brand kit has its own `assets/LICENSE.md`. Review those files before reusing material; this README does not change their terms.
+This repository currently contains separate license texts: `LICENSE` for the documentation and `LICENSE_CODE` for code and automation. The brand kit has its own `assets/license.md`. Review those files before reusing material; this README does not change their terms.

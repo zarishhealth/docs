@@ -1,6 +1,6 @@
 # zarishhealth — Asset Index
 
-**239 files · 9.56 MB.** Naming: `zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>` — see [BRANDING.md](./BRANDING.md) §3.
+**239 files · 9.56 MB.** Naming: `zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>` — see [branding.md](./branding.md) §3.
 
 ## Root — docs, tokens & web config  
 
@@ -8,9 +8,9 @@
 
 | File | Size |
 | --- | ---: |
-| `BRANDING.md` | 25.5 KB |
+| `branding.md` | 25.5 KB |
 | `CHANGELOG.md` | 1.4 KB |
-| `LICENSE.md` | 2.0 KB |
+| `license.md` | 2.0 KB |
 | `SKILL.md` | 8.0 KB |
 | `brand-tokens.json` | 3.1 KB |
 | `brand.css` | 3.4 KB |

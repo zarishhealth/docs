@@ -7,7 +7,7 @@ version: 1.0.0
 
 # zarishhealth Brand Skill
 
-Machine-readable companion to `BRANDING.md`. Read this before producing any zarishhealth-branded artefact. Full rationale and per-platform detail live in `BRANDING.md`; exact values live in `brand-tokens.json`.
+Machine-readable companion to `branding.md`. Read this before producing any zarishhealth-branded artefact. Full rationale and per-platform detail live in `branding.md`; exact values live in `brand-tokens.json`.
 
 ## Canonical identity references
 
