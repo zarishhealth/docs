@@ -45,6 +45,24 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Problem types',
+      link: { type: 'doc', id: 'problems/index' },
+      items: [
+        'problems/index',
+        'problems/validation-failed',
+        'problems/malformed-request',
+        'problems/unauthenticated',
+        'problems/forbidden',
+        'problems/not-found',
+        'problems/version-conflict',
+        'problems/sync-conflict',
+        'problems/rate-limited',
+        'problems/unsupported-protocol-version',
+        'problems/internal-error',
+      ],
+    },
   ],
 };
 
