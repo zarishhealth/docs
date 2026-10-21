@@ -167,6 +167,7 @@ Keywords MUST/SHOULD/MAY are used as in RFC 2119.
 | Workflows | `<verb-or-purpose>.yml` | `ci.yml`, `release.yml`, `security.yml`, `pages.yml`, `reusable-rust-ci.yml` |
 | SQL migrations | `<UTC-timestamp>_<snake_description>.sql` (SQLx convention) | `20261014093000_create_sync_log.sql` |
 | Protobuf | `snake_case.proto` under `proto/<package-path>/<version>/` | `proto/zarishhealth/sync/v1/sync.proto` |
+| MCP tool schemas | `<tool_name>.schema.json`, `snake_case` because the file is named after the tool (§10.1) | `fhir_search_resources.schema.json` |
 | JSON/YAML keys | JSON: `camelCase` (aligns with FHIR). YAML config: `snake_case` | |
 | Brand assets | Keep the existing pattern `zarishhealth-<type>-<target>[-<variant>][-<WxH>].<ext>` — **frozen**, because hot-links depend on it | |
 | No spaces, no uppercase (except above), no version numbers in filenames of published URLs (use paths like `/v1/`) | | |
@@ -214,7 +215,7 @@ Keywords MUST/SHOULD/MAY are used as in RFC 2119.
 
 ### 4.9 Allowed exceptions (complete list)
 
-Rust source `snake_case` (`main.rs`) and Rust directories (`src`, `tests`, `benches`, `examples`, `migrations`, `src-tauri`, `.cargo`) · FHIR resource names (`Patient`) and IG Publisher file names (`StructureDefinition-zarish-patient.json`) · conventional root files (`README.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md`, `AGENTS.md`, `CODEOWNERS`, `GOVERNANCE.md`, `SUPPORT.md`, `PULL_REQUEST_TEMPLATE.md`, `REUSE.toml`, `SHA256SUMS`, `BRANDING.md`, `ASSETS-INDEX.md`, `SKILL.md`, `PLAN.md`) · GitHub-mandated names (`.github`, `.github-private`, `.well-known`, `ISSUE_TEMPLATE`, `zarishhealth.github.io`) · SQLx layout (`.sqlx`) and Protobuf layout (`lower_snake_case.proto`, as the Protobuf style guide requires) · tool-mandated files and directories (`Cargo.toml`, `Cargo.lock`, `Dockerfile`, `Makefile`, `opencode.jsonc`, `.opencode`, `node_modules`) · REUSE (`LICENSES`). Nothing else.
+Rust source `snake_case` (`main.rs`) and Rust directories (`src`, `tests`, `benches`, `examples`, `migrations`, `src-tauri`, `.cargo`) · FHIR resource names (`Patient`) and IG Publisher file names (`StructureDefinition-zarish-patient.json`) · conventional root files (`README.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md`, `AGENTS.md`, `CODEOWNERS`, `GOVERNANCE.md`, `SUPPORT.md`, `PULL_REQUEST_TEMPLATE.md`, `REUSE.toml`, `SHA256SUMS`, `BRANDING.md`, `ASSETS-INDEX.md`, `SKILL.md`, `PLAN.md`) · GitHub-mandated names (`.github`, `.github-private`, `.well-known`, `ISSUE_TEMPLATE`, `zarishhealth.github.io`) · SQLx layout (`.sqlx`) and Protobuf layout (`lower_snake_case.proto`, as the Protobuf style guide requires) · MCP tool schemas (`api/mcp/tools/<tool_name>.schema.json`, `snake_case` so the file matches the tool name §10.1 gives it) · tool-mandated files and directories (`Cargo.toml`, `Cargo.lock`, `Dockerfile`, `Makefile`, `opencode.jsonc`, `.opencode`, `node_modules`) · REUSE (`LICENSES`). Nothing else.
 
 ---
 
