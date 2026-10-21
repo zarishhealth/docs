@@ -323,7 +323,7 @@ zarishhealth.github.io/
 └── LICENSE
 ```
 
-Published at `https://zarishhealth.github.io/`. Brand images (favicon, OG, logo) load from `https://raw.githubusercontent.com/zarishhealth/.github/main/profile/assets/…`; this repository keeps no copy of the kit.
+Published at `https://zarishhealth.github.io/`. Brand images (favicon, OG, logo) load from `https://zarishhealth.github.io/assets/brand/…`, mirrored from `brand-kit` by `scripts/brand-sync.sh` and pinned in `brand.lock`; neither this repository nor `.github` keeps a copy of the kit.
 
 ### 6.3 `core` (Cargo workspace)
 
