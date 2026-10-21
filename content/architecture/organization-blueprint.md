@@ -214,7 +214,7 @@ Keywords MUST/SHOULD/MAY are used as in RFC 2119.
 
 ### 4.9 Allowed exceptions (complete list)
 
-Rust source `snake_case` · Rust directories above · FHIR resource names (`Patient`) and IG Publisher file names (`StructureDefinition-zarish-patient.json`) · conventional root files · GitHub-mandated names · SQLx/Protobuf layouts. Nothing else.
+Rust source `snake_case` (`main.rs`) and Rust directories (`src`, `tests`, `benches`, `examples`, `migrations`, `src-tauri`, `.cargo`) · FHIR resource names (`Patient`) and IG Publisher file names (`StructureDefinition-zarish-patient.json`) · conventional root files (`README.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md`, `AGENTS.md`, `CODEOWNERS`, `GOVERNANCE.md`, `SUPPORT.md`, `PULL_REQUEST_TEMPLATE.md`, `REUSE.toml`, `SHA256SUMS`, `BRANDING.md`, `ASSETS-INDEX.md`, `SKILL.md`, `PLAN.md`) · GitHub-mandated names (`.github`, `.github-private`, `.well-known`, `ISSUE_TEMPLATE`, `zarishhealth.github.io`) · SQLx layout (`.sqlx`) and Protobuf layout (`lower_snake_case.proto`, as the Protobuf style guide requires) · tool-mandated files and directories (`Cargo.toml`, `Cargo.lock`, `Dockerfile`, `Makefile`, `opencode.jsonc`, `.opencode`, `node_modules`) · REUSE (`LICENSES`). Nothing else.
 
 ---
 
