@@ -45,4 +45,4 @@ See [contributing](content/guides/contributing.md), the [content model](content/
 
 ## License
 
-This repository currently contains separate license texts: `LICENSE` for the documentation and `LICENSE_CODE` for code and automation. The brand kit (in `zarishhealth/.github/profile/assets`) has its own `license.md`. Review those files before reusing material; this README does not change their terms.
+The documentation in this repository is CC-BY-4.0 (`LICENSE`), and the site code and automation are Apache-2.0 (`LICENSES/Apache-2.0.txt`). `REUSE.toml` maps each path to its licence. The brand kit lives in the `brand-kit` repository and carries its own MIT licence. Review those files before reusing material; this README does not change their terms.

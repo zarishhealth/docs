@@ -1,0 +1,25 @@
+version = 1
+
+# BLUEPRINT.md section 13: documentation and content are CC-BY-4.0, code and
+# automation are Apache-2.0. The root `LICENSE` carries the documentation grant;
+# `LICENSES/` holds the canonical texts that REUSE checks.
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 ZarishHealth"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = [
+  "src/**",
+  "static/**",
+  "scripts/**",
+  "docusaurus.config.js",
+  "sidebars.js",
+  "package.json",
+  "package-lock.json",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 ZarishHealth"
+SPDX-License-Identifier = "Apache-2.0"
