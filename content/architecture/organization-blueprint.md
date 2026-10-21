@@ -220,27 +220,35 @@ Rust source `snake_case` (`main.rs`) and Rust directories (`src`, `tests`, `benc
 
 ## 5. Organization map and repository catalog
 
-### 5.1 Current repositories and proposed future repositories
+### 5.1 Current repositories
 
-Only `.github`, `docs`, `builder`, and `zarishhealth.github.io` are part of the current inventory recorded in this repository map. The remaining rows are proposals, not repositories to create now. No visibility or deployment target is approved by this blueprint.
+Every Phase 1 repository exists. Visibility follows one rule: a repository is public when it
+publishes something, and private otherwise.
 
-| Repository | Status | Proposed purpose | Visibility / publication |
+| Repository | Purpose | Visibility | Pages |
 | --- | --- | --- | --- |
-| `.github` | Current repository; verify its active files | Organization profile, shared defaults, and reusable resources | Check current repository settings |
-| `docs` | Current repository | Reviewed organization documentation | Private at the last verified check; no deployment configured |
-| `builder` | Current repository; verify purpose in its README | Not established here | Check current repository settings |
-| `zarishhealth.github.io` | Current repository; verify purpose and deployment | Organization website repository | Check current repository settings |
-| `core` | Proposal | Rust workspace for shared models, storage, sync, server, and CLI | Undecided; review before creation |
-| `app` | Proposal | Tauri shells and user interface | Undecided; review before creation |
-| `api` | Proposal | API, Protobuf, JSON Schema, and MCP contracts | Undecided; review before creation |
-| `fhir` | Proposal | FHIR Implementation Guide and validated profiles | Undecided; review before creation |
-| `mcp` | Proposal | Optional MCP servers and registry manifests | Undecided; review before creation |
-| `content` | Proposal | Reviewed forms, translations, and licensed terminology subsets | Undecided; review data and licenses first |
-| `deploy` | Proposal | Deployment and backup automation | Undecided; review secrets and operational ownership |
-| `distro-template` | Proposal | Template for site distributions | Undecided; review before creation |
-| `rfcs` | Proposal | Architecture proposals and governance | Undecided; review before creation |
-| `.github-private` | Optional proposal | Restricted internal profile or notes | Undecided; do not create without a specific need |
+| `.github` | Organization profile, shared defaults, reusable resources | Public | — |
+| `zarishhealth.github.io` | Organization website, `/.well-known/security.txt`, published brand mirror | Public | `/` |
+| `docs` | This documentation | Public | `/docs/` |
+| `api` | API, Protobuf, JSON Schema and MCP contracts | Public | `/api/` |
+| `fhir` | FHIR R5 Implementation Guide | Public | `/fhir/` |
+| `mcp` | MCP servers | Public | `/mcp/` |
+| `rfcs` | Architecture proposals and governance | Public | `/rfcs/` |
+| `core` | Rust workspace: models, storage, sync, server, CLI | Private | — |
+| `app` | Tauri shells and user interface | Private | — |
+| `content` | Forms, translations, reference data (synthetic only) | Private | — |
+| `deploy` | Deployment and backup automation | Private | — |
+| `distro-template` | Template for site distributions | Private | — |
+| `builder` | Naming lint, conformance checks, end-to-end tests, release evidence | Private | — |
+| `brand-kit` | Logo, icons, social cards, badges, design tokens, guidelines | Private | — |
+| `.github-private` | Restricted internal profile and notes | Private | — |
 
+> **Pages needs a public repository.** On the free plan GitHub requires the repository to be public
+> before it will publish a Pages site (GitHub Docs, read 2026-10-21), so a private repository has no
+> Pages URL. The five repositories that publish something — `docs`, `api`, `fhir`, `mcp`, `rfcs` —
+> stay public for that reason. `brand-kit` is private, so the website publishes its assets at
+> `/assets/brand/` and is the only public origin for them.
+>
 > `/fhir/`, `/api/`, `/docs/` and `/mcp/` as Pages paths are **static documentation and contracts**. They are different things from the live `/fhir`, `/api/v1` and `/mcp` endpoints on `{API_ORIGIN}`. The static site is where the contract is read; the server is where it is called.
 
 ### 5.2 Phase 2 (only when justified, with the trigger)
