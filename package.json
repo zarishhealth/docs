@@ -19,7 +19,7 @@
     "@docusaurus/theme-mermaid": "3.10.2",
     "@mermaid-js/layout-elk": "^1.0.1",
     "braces": "file:vendor/braces",
-    "markdownlint-cli2": "0.23.3",
+    "markdownlint-cli2": "0.24.0",
     "mermaid": "12.2.0"
   },
   "overrides": {
