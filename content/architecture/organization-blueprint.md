@@ -4,14 +4,15 @@ description: Proposed organization-wide repository, naming, architecture, and in
 slug: /architecture/organization-blueprint
 sidebar_position: 4
 status: proposed
-last_reviewed: "2026-10-16"
+last_reviewed: "2026-11-01"
 audience: Organization maintainers, contributors, and technical reviewers
 source_note: Reconciled from maintainer-provided architecture drafts; unresolved items remain proposals.
 ---
 
-**Version 2.0.0 · 2026-10-14 · Status: proposal for adoption**
+**Version 2.1.0 · 2026-11-01 · Status: proposal for adoption**
 **Organization:** [github.com/zarishhealth](https://github.com/zarishhealth)
 **Supersedes:** `DRAFT_BLUEPRINT_ZARISHHEALTH.md`, `DRAFT_ZARISHHEALTH.md` (both drafts are merged and reconciled here)
+**Changes in 2.1.0:** the runtime API origin is named (`https://api.zarish.org`) and the two-stage hosting model is recorded — §2.1, §7.1, §14.9, §19.4 and [ADR 0002](../adr/0002-runtime-api-origin.md). Permanent identifiers are unchanged.
 
 > This document defines how every repository, directory, file, URL, API path, MCP server and well-known document of the ZarishHealth GitHub organization is named, laid out and published, so that **every path can be used as a URI/URL/API/MCP endpoint without renaming**.
 > This is a design proposal, not an implementation inventory or deployment guide. Standards and version status were rechecked against primary sources on 2026-10-16 where recorded; the [technology baseline](../reference/technology-baseline.md) is a dated snapshot, not a version lock.
@@ -23,7 +24,7 @@ source_note: Reconciled from maintainer-provided architecture drafts; unresolved
 | You want to… | Go to |
 | --- | --- |
 | Know what changed from the drafts and why | §1 |
-| Understand the "no custom domain" consequences | §2 |
+| Understand the GitHub-hosted model and the runtime API origin | §2 |
 | See the standards this blueprint is built on | §3 |
 | Name a repo, branch, file, crate, image, endpoint | §4 |
 | See the repository catalog and every repo's layout | §5, §6 |
@@ -66,7 +67,7 @@ source_note: Reconciled from maintainer-provided architecture drafts; unresolved
 
 ## 2. GitHub-hosted origins and configurable API host
 
-The organization name provides a GitHub namespace. Ownership or approval of any custom domain, email address, hosting provider, or external service has not been verified here. Use placeholders until maintainers confirm those details.
+The organization name provides a GitHub namespace. The maintainer has confirmed ownership of `zarish.org` and decided the runtime API origin (`https://api.zarish.org`, [ADR 0002](../adr/0002-runtime-api-origin.md)). Ownership or approval of any other custom domain, email address, hosting provider, or external service has not been verified here; use placeholders for those until maintainers confirm the details.
 
 ### 2.1 Origins
 
@@ -79,7 +80,7 @@ The organization name provides a GitHub namespace. Ownership or approval of any 
 | npm packages (if any) | `@zarishhealth/<package>` | Scope = org name |
 | Rust crates | `zarish-<name>` on crates.io | crates.io has no org namespaces, so a prefix is the only protection |
 | MCP registry names | Follow the current official MCP Registry naming and manifest rules if adoption is approved | Verify registration requirements at implementation time |
-| Central API (optional) | `https://{API_ORIGIN}` | Hostname assigned by whatever host you choose; **configuration, not code** |
+| Central API (optional) | `https://api.zarish.org` | Decided by [ADR 0002](../adr/0002-runtime-api-origin.md); still **configuration, not code**. The paths below it are fixed (§8, §9) |
 | Site/field API proposal | Local or site-specific origin | Decide hostnames and TLS before implementation; do not send health data over unencrypted network connections |
 
 Rules that follow:
@@ -89,7 +90,7 @@ Rules that follow:
 3. **Pages cannot set custom response headers.** Anything that needs a specific `Content-Type` that Pages would not infer (extensionless files, `application/linkset+json`) must come from the Rust server instead.
 4. Do not rely on `raw.githubusercontent.com` as a public asset host without checking its content type, browser behavior, and intended use. A reviewed Pages deployment may be considered only after publication approval (§17).
 5. **Transport security:** use HTTPS for network traffic carrying sensitive information. A loopback exception or a local development setup does not authorize clear-text traffic over a LAN or external network.
-6. If an approved custom domain or API host becomes available, review canonical URLs and origins (§7.1) before use; do not assume that any external domain is owned or approved.
+6. The runtime API origin is `https://api.zarish.org` ([ADR 0002](../adr/0002-runtime-api-origin.md)). If any other custom domain or API host is approved later, review canonical URLs and origins (§7.1) before use; do not assume that any external domain is owned or approved.
 
 ---
 
@@ -250,7 +251,7 @@ publishes something, and private otherwise.
 > stay public for that reason. `brand-kit` is private, so the website publishes its assets at
 > `/assets/brand/` and is the only public origin for them.
 >
-> `/fhir/`, `/api/`, `/docs/` and `/mcp/` as Pages paths are **static documentation and contracts**. They are different things from the live `/fhir`, `/api/v1` and `/mcp` endpoints on `{API_ORIGIN}`. The static site is where the contract is read; the server is where it is called.
+> `/fhir/`, `/api/`, `/docs/` and `/mcp/` as Pages paths are **static documentation and contracts**. They are different things from the live `/fhir`, `/api/v1` and `/mcp` endpoints on `https://api.zarish.org`. The static site is where the contract is read; the server is where it is called.
 
 ### 5.2 Phase 2 (only when justified, with the trigger)
 
@@ -472,9 +473,9 @@ docs/                                 rfcs/
 | JSON Schemas (`$id`) | `https://zarishhealth.github.io/api/json-schema/<name>.schema.json` | Permanent |
 | MCP registry names | `io.github.zarishhealth/<name>` | Permanent |
 | Protobuf packages | `zarishhealth.<domain>.<vN>` | Permanent per major |
-| Runtime API | `{API_ORIGIN}` | Replaceable |
+| Runtime API | `https://api.zarish.org` | Replaceable configuration ([ADR 0002](../adr/0002-runtime-api-origin.md)) |
 
-**Rule: identifiers that get embedded in data (canonical URLs, NamingSystem URIs, JSON Schema `$id`) MUST use the permanent bases above, never `{API_ORIGIN}`.** If maintainers approve a custom domain, decide whether it is an alias and preserve any identifiers already published.
+**Rule: identifiers that get embedded in data (canonical URLs, NamingSystem URIs, JSON Schema `$id`) MUST use the permanent bases above, never the runtime API origin.** If maintainers approve another custom domain, decide whether it is an alias and preserve any identifiers already published.
 
 ### 7.2 Resource identifiers
 
@@ -599,7 +600,7 @@ This endpoint is proposed, not verified as implemented. Validate every operation
 
 | Topic | Rule |
 | --- | --- |
-| Base URL | `{API_ORIGIN}/fhir` |
+| Base URL | `https://api.zarish.org/fhir` |
 | Version | R5 (`5.0.0`) is the proposed baseline. Confirm version negotiation and capability reporting against the implementation's conformance requirements |
 | Formats | `application/fhir+json` (primary); `application/fhir+xml` optional |
 | Paths | Standard FHIR REST: `GET /fhir/Patient/{id}`, `POST /fhir/Patient`, `GET /fhir/Observation?patient=…&_count=…`, `POST /fhir/` (transaction/batch Bundle), `POST /fhir/Patient/_search`. Resource types are `PascalCase` by FHIR rule — the allowed exception |
@@ -663,7 +664,7 @@ The entries below are design candidates, not approved controls or an authorizati
 These are proposed data-handling behaviors, not verified features. Encryption, key management, backup, and conflict-resolution details require implementation and independent review.
 
 - **Local store**: embedded SQLite per device, encrypted at rest (SQLCipher or equivalent) with a device-bound key.
-- **Central store** (optional): PostgreSQL is the proposed database. Hosting and data handling are undecided (§14).
+- **Central store** (optional): PostgreSQL is the proposed database. The runtime API origin is decided ([ADR 0002](../adr/0002-runtime-api-origin.md)); the host and data handling of the central store are not (§14.9).
 - **Change log**: append-only, per resource version (`meta.versionId`), UUIDv7 change IDs, HLC/vector clock per device. Clinical history is never overwritten; edits append versions.
 - **Transport**: Protobuf envelopes (`zarishhealth.sync.v1`), compressed, over TLS; LAN peer sync discovers peers via mDNS and requires mutual authentication with per-device keys. A shared passphrase is not authentication.
 - **Conflict rule** (resolves the drafts' disagreement): non-overlapping field edits merge automatically; overlapping edits to clinical fields are **never** decided by "newest timestamp wins" — they enter the review queue (`/api/v1/sync-conflicts`). Non-clinical fields may use last-writer-wins with an audit record.
@@ -681,6 +682,7 @@ These are proposed data-handling behaviors, not verified features. Encryption, k
 6. **Compliance and conformance language**: follow `AGENTS.md`; never state the software or a deployment is compliant, certified, or conforms to FHIR without evidence and authorized review. A badge image is not evidence. Do not replace an R4 badge with an R5 claim unless the product has been validated against R5.
 7. **Supply chain**: `cargo-deny`, `cargo-audit`, Dependabot, pinned Action SHAs, signed releases (sigstore/cosign), SBOM per release, GitHub artifact attestations.
 8. **Vulnerability reporting**: decide and verify a supported private reporting route for each repository before publishing security contact information.
+9. **Hosting model** ([ADR 0002](../adr/0002-runtime-api-origin.md), 2026-11-01): the runtime API origin is `https://api.zarish.org`, with DNS and TLS terminated at the Cloudflare edge. Stage 1 is a zero-cost edge runtime carrying **synthetic data only**. Anything with real patient data waits for the security, privacy and contractual gates (`D-10`, `SEC-04`, `SEC-05`), and then runs on a container platform chosen after a written review of contractual coverage, residency, audit, backup and incident response. A free tier is a prototype constraint, never evidence of durability, security or compliance.
 
 ---
 
@@ -759,7 +761,7 @@ The sequence below is a planning aid, not a commitment, staffing plan, or eviden
 1. **MCP discovery conventions**: verify the selected official specification and registry before implementation.
 2. **OAuth profile**: verify the current IETF status and the exact requirements of the MCP version selected for implementation.
 3. **FHIR terminology URIs and licences** (SNOMED CT, LOINC, ICD-11) must be confirmed per deployment country.
-4. **Host for `{API_ORIGIN}`** is undecided. Compare deployment models using security, jurisdiction, service continuity, operational capacity, and contractual requirements; no provider is approved here.
+4. **Host for `{API_ORIGIN}`** — **resolved 2026-11-01.** The runtime API origin is `https://api.zarish.org`, recorded with the two-stage hosting model in [ADR 0002](../adr/0002-runtime-api-origin.md) and §14.9. The production platform itself is still to be chosen after the security, privacy and contractual gates.
 5. **Static asset behavior**: verify content type, browser behavior, licensing, and access before depending on a hosting path.
 6. **Idempotency-Key** and **RateLimit** headers are IETF drafts; treat as conventions.
 7. **UNHCR / Bangladesh identifier system URIs** need confirmation from the issuing authorities.

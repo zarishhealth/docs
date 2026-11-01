@@ -25,6 +25,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Decisions',
+      items: [
+        'adr/0001-record-architecture-decisions',
+        'adr/0002-runtime-api-origin',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Reference',
       items: [
         'reference/content-model',
